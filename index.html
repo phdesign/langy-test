@@ -1,0 +1,226 @@
+<!--
+  ux3 - landing page for the third design exploration.
+  Monochrome (single-blue) restyle of /ux/ layout. No gold or red accents.
+-->
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>LJFC theme mockups · ux3 monochrome</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet"
+  href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" />
+<link rel="stylesheet" href="styles.css" />
+<style>
+  body { background: var(--surface-2); }
+  .lp-hero {
+    background: linear-gradient(135deg, var(--blue) 0%, var(--blue-deep) 100%);
+    color: var(--surface);
+    padding: var(--s-7) 0 var(--s-8);
+    position: relative;
+    overflow: hidden;
+  }
+  .lp-hero::after {
+    content: ""; position: absolute; inset: 0;
+    background-image:
+      repeating-linear-gradient(115deg, rgba(255,255,255,0.06) 0 32px, rgba(255,255,255,0) 32px 64px);
+    pointer-events: none;
+  }
+  .lp-hero h1 {
+    color: var(--surface); margin: 0 0 var(--s-3);
+    font-size: clamp(2.5rem, 6vw + 1rem, 5rem);
+    line-height: 0.95; letter-spacing: -0.02em; max-width: 16ch;
+    text-transform: uppercase;
+  }
+  .lp-hero h1 em { font-style: normal; color: var(--accent); display: block; }
+  .lp-hero p { color: rgba(255,255,255,0.88); max-width: 56ch; margin: 0 0 var(--s-4); font-size: 1.0625rem; }
+  .lp-hero .meta {
+    display: flex; gap: var(--s-3); flex-wrap: wrap;
+    font-family: var(--display); font-weight: 700;
+    font-size: 0.7rem; letter-spacing: 0.18em;
+    text-transform: uppercase; color: rgba(255,255,255,0.7);
+    margin-top: var(--s-5);
+  }
+  .lp-hero .meta span { padding: 5px 12px; background: rgba(255,255,255,0.10); border: 1px solid rgba(255,255,255,0.18); border-radius: 999px; }
+  .lp-brand {
+    display: flex; align-items: center; gap: var(--s-3);
+    margin-bottom: var(--s-5);
+    color: var(--surface);
+  }
+  .lp-brand img { height: 48px; filter: brightness(0) invert(1); }
+  .lp-brand strong {
+    font-family: var(--display); font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.18em;
+    font-size: 0.75rem;
+    color: var(--accent);
+  }
+
+  .lp-section { padding: var(--s-7) 0; }
+  .lp-section h2 { margin-bottom: var(--s-3); }
+  .lp-section .lead { color: var(--body); max-width: 60ch; }
+
+  /* hero card uses image preview */
+  .ic-feature .index-card__media {
+    background-image:
+      linear-gradient(180deg, rgba(29, 52, 115, 0.10), rgba(29, 52, 115, 0.94)),
+      url('assets/photos/hero-action.jpg');
+    background-size: cover; background-position: center;
+  }
+  .ic-feature .index-card__media span {
+    position: absolute; bottom: 16px; left: 16px; right: 16px;
+    font-family: var(--display); font-weight: 800;
+    font-size: 2.25rem; line-height: 0.95; letter-spacing: -0.01em;
+    color: var(--surface);
+    text-transform: uppercase;
+  }
+  .ic-feature .index-card__media span em {
+    color: var(--accent); font-style: normal; display: block;
+  }
+
+  .lp-key {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--r-3);
+    padding: var(--s-5);
+    margin-top: var(--s-4);
+    display: grid; gap: var(--s-3);
+    grid-template-columns: 1fr;
+    font-size: 0.9375rem; line-height: 1.55;
+  }
+  @media (min-width: 768px) {
+    .lp-key { grid-template-columns: repeat(3, 1fr); }
+  }
+  .lp-key h4 {
+    font-family: var(--display); font-weight: 700;
+    font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--blue); margin: 0 0 6px;
+  }
+  .lp-key p { margin: 0; color: var(--body); font-size: 0.9375rem; }
+  .lp-footer {
+    padding: var(--s-5) 0;
+    border-top: 1px solid var(--line);
+    color: var(--muted);
+    font-size: 0.875rem;
+    text-align: center;
+  }
+</style>
+</head>
+<body>
+
+<section class="lp-hero">
+  <div class="wrap">
+    <div class="lp-brand">
+      <img src="assets/logo.png" alt="LJFC crest" />
+      <strong>LJFC theme · ux3 monochrome · May 2026</strong>
+    </div>
+    <h1>Welcome to the Roos.<em>Theme rebuild, round three.</em></h1>
+    <p>Five static mockups for the LJFC Weebly theme rebuild. Same layout and content as <code style="background: rgba(255,255,255,0.10); padding: 2px 6px; border-radius: 3px;">/ux</code>, restyled in the monochrome single-blue palette from <code style="background: rgba(255,255,255,0.10); padding: 2px 6px; border-radius: 3px;">/ux2</code>. No gold or red accents.</p>
+    <div class="meta">
+      <span>Mobile-first</span>
+      <span>Single-blue identity</span>
+      <span>Inter + Barlow Condensed</span>
+      <span>Real LJFC content</span>
+    </div>
+  </div>
+</section>
+
+<section class="lp-section">
+  <div class="wrap">
+
+    <div class="lp-key">
+      <div>
+        <h4>Display</h4>
+        <p>Barlow Condensed (700–800) - uppercase headings, scoreboard energy.</p>
+      </div>
+      <div>
+        <h4>Body</h4>
+        <p>Inter (400–700) - refined humanist sans, lifted from the ux2 design system.</p>
+      </div>
+      <div>
+        <h4>Palette</h4>
+        <p>Single brand-blue (<code>#284597</code>) with a deep navy heading shade. Light-blue (<code>#BFD0F2</code>) used sparingly on dark surfaces.</p>
+      </div>
+    </div>
+
+    <h2 style="margin-top: var(--s-7);">Open the mockups</h2>
+    <p class="lead">Seven pages, same content and layout as the v1 versions, restyled in the monochrome palette.</p>
+
+    <div class="index-grid">
+
+      <a class="index-card ic-feature" href="home.html">
+        <div class="index-card__media"><span>One Hundred Years of<em>Langy Pride.</em></span></div>
+        <div class="index-card__body">
+          <span class="index-card__tag">01 · Showpiece</span>
+          <h3>Home</h3>
+          <p>Full splash. Hero, AoC, three-action, pathways, news, 2025 Premiers wall, tiered sponsors.</p>
+        </div>
+      </a>
+
+      <a class="index-card" href="about.html">
+        <div class="index-card__media">A</div>
+        <div class="index-card__body">
+          <span class="index-card__tag">02 · Standard page</span>
+          <h3>About</h3>
+          <p>Banner header + article body + downloads sidebar with real Kanga Noos PDFs.</p>
+        </div>
+      </a>
+
+      <a class="index-card" href="news.html">
+        <div class="index-card__media">N</div>
+        <div class="index-card__body">
+          <span class="index-card__tag">03 · Index</span>
+          <h3>News &amp; Kanga Noos</h3>
+          <p>Editorial card grid, category pills, filter chips, search, pagination.</p>
+        </div>
+      </a>
+
+      <a class="index-card" href="sponsors.html">
+        <div class="index-card__media">S</div>
+        <div class="index-card__body">
+          <span class="index-card__tag">04 · Showcase</span>
+          <h3>Sponsors</h3>
+          <p>Tiered showcase: Major / Premier / Supporter. Plus a Become a Sponsor CTA panel.</p>
+        </div>
+      </a>
+
+      <a class="index-card" href="register.html">
+        <div class="index-card__media">R</div>
+        <div class="index-card__body">
+          <span class="index-card__tag">05 · Conversion</span>
+          <h3>Register for 2026</h3>
+          <p>Dual pathway picker (Auskick / Juniors), fees, key dates, FAQ accordion.</p>
+        </div>
+      </a>
+
+      <a class="index-card" href="player-info.html">
+        <div class="index-card__media">P</div>
+        <div class="index-card__body">
+          <span class="index-card__tag">06 · Hub page</span>
+          <h3>Player Information</h3>
+          <p>Sub-topic strip, post-rego checklist, gear split, training timeline, codes &amp; downloads.</p>
+        </div>
+      </a>
+
+      <a class="index-card" href="contact.html">
+        <div class="index-card__media">C</div>
+        <div class="index-card__body">
+          <span class="index-card__tag">07 · Get in touch</span>
+          <h3>Contact</h3>
+          <p>Map + address, enquiry form, role-routed emails, full Executive Committee with phone &amp; email.</p>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<footer class="lp-footer">
+  <div class="wrap">
+    Static prototype. Monochrome restyle of <code>/ux</code>, palette borrowed from <code>/ux2</code>. Open with <code>file://</code> or <code>python3 -m http.server</code>.
+  </div>
+</footer>
+
+</body>
+</html>

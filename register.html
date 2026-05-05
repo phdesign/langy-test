@@ -1,0 +1,420 @@
+<!--
+  ux3 - monochrome restyle of /ux/register.html.
+  Hero, dual-pathway picker, fees, key dates, FAQ accordion. PlayHQ external.
+-->
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Register for 2026 - Langwarrin Junior FC</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet"
+  href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" />
+<link rel="stylesheet" href="styles.css" />
+<style>
+  /* register-specific dual pathway picker */
+  .reg-hero {
+    position: relative;
+    background: var(--blue-deep);
+    color: var(--surface);
+    overflow: hidden;
+    isolation: isolate;
+  }
+  .reg-hero__media {
+    position: absolute; inset: 0;
+    background-image: url('assets/photos/hero-action.jpg');
+    background-size: cover; background-position: center;
+    z-index: -2;
+  }
+  .reg-hero__overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(40, 69, 151, 0.85) 0%, rgba(29, 52, 115, 0.94) 100%);
+    z-index: -1;
+  }
+  .reg-hero__inner {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: var(--s-7) var(--s-4) var(--s-6);
+  }
+  @media (min-width: 1024px) { .reg-hero__inner { padding: var(--s-8) var(--s-6); } }
+  .reg-hero h1 {
+    font-family: var(--display); font-weight: 800;
+    font-size: clamp(2.5rem, 7vw + 0.5rem, 5rem);
+    line-height: 0.95; letter-spacing: -0.018em;
+    color: var(--surface);
+    margin: 0 0 var(--s-3); max-width: 16ch;
+    text-transform: uppercase;
+  }
+  .reg-hero h1 em {
+    font-style: normal; color: var(--accent);
+  }
+  .reg-hero p { color: rgba(255,255,255,0.88); max-width: 56ch; margin: 0; font-size: 1.125rem; }
+  .reg-hero .eyebrow { color: var(--accent); }
+
+  .pathway-pick {
+    margin-top: -64px;
+    position: relative; z-index: 2;
+    padding-top: 0;
+  }
+  .pathway-pick__grid {
+    display: grid; gap: var(--s-4);
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 768px) { .pathway-pick__grid { grid-template-columns: repeat(2, 1fr); } }
+  .pp-card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--r-3);
+    padding: var(--s-5);
+    box-shadow: var(--shadow-2);
+    display: flex; flex-direction: column;
+    transition: transform .2s, box-shadow .2s, border-color .2s;
+    text-decoration: none;
+    color: inherit;
+  }
+  .pp-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-3); border-color: var(--blue); text-decoration: none; }
+  .pp-card__head {
+    display: flex; gap: var(--s-3); align-items: center;
+    margin-bottom: var(--s-4);
+  }
+  .pp-card__icon {
+    width: 56px; height: 56px;
+    border-radius: var(--r-2);
+    background: var(--blue-tint); color: var(--blue);
+    display: inline-flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .pp-card__age {
+    font-family: var(--display); font-weight: 700; font-size: 0.7rem;
+    letter-spacing: 0.18em; text-transform: uppercase; color: var(--blue);
+    margin-bottom: 4px;
+  }
+  .pp-card h3 {
+    margin: 0; font-family: var(--display); font-weight: 800;
+    font-size: 1.875rem; color: var(--blue-deep); line-height: 1;
+    letter-spacing: -0.005em; text-transform: uppercase;
+  }
+  .pp-card__body { color: var(--body); font-size: 0.9375rem; line-height: 1.55; flex: 1; }
+  .pp-card__body ul { padding-left: 1.1rem; margin: var(--s-3) 0 var(--s-4); }
+  .pp-card__body li { margin-bottom: 4px; }
+  .pp-card__cta { margin-top: auto; }
+
+  .key-dates {
+    display: grid; gap: var(--s-3);
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 640px) { .key-dates { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 1024px) { .key-dates { grid-template-columns: repeat(4, 1fr); } }
+  .key-date {
+    background: var(--surface); border: 1px solid var(--line);
+    border-radius: var(--r-2); padding: var(--s-4);
+    border-top: 4px solid var(--blue);
+  }
+  .key-date strong {
+    font-family: var(--display); font-weight: 800;
+    color: var(--blue-deep); display: block;
+    font-size: 1.25rem; line-height: 1.1;
+    text-transform: uppercase;
+  }
+  .key-date span {
+    font-family: var(--display); font-weight: 700;
+    font-size: 0.7rem; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--muted);
+    display: block; margin-top: 6px;
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="site-header__inner">
+    <a href="home.html" class="site-header__brand"><img src="assets/logo.png" alt="" />
+      <div class="site-header__wordmark">Langwarrin Junior FC<span>Est. 1925</span></div>
+    </a>
+    <nav class="site-nav" aria-label="Primary">
+      <a href="home.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="news.html">News</a>
+      <a href="player-info.html">Player Info</a>
+      <a href="sponsors.html">Sponsors</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <a href="register.html" class="site-header__cta">Register 2026</a>
+    <button class="hamburger" aria-label="Open menu" aria-expanded="false" data-hamburger>
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+    </button>
+  </div>
+</header>
+<div class="mobile-drawer" data-drawer aria-label="Mobile menu">
+  <ul>
+    <li><a href="home.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="news.html">News &amp; Events</a></li>
+    <li><a href="player-info.html">Player Information</a></li>
+    <li><a href="register.html">Register</a></li>
+    <li><a href="sponsors.html">Sponsors</a></li>
+  </ul>
+  <a class="btn btn--primary" href="register.html">Register for 2026</a>
+</div>
+
+<!-- Hero ================================================================== -->
+<section class="reg-hero">
+  <div class="reg-hero__media"></div>
+  <div class="reg-hero__overlay"></div>
+  <div class="reg-hero__inner">
+    <span class="eyebrow">2026 Season · April – August</span>
+    <h1>Register for <em>2026.</em></h1>
+    <p>Two pathways into the club, pick the one that matches your child's age. All registration is handled through the AFL's PlayHQ system.</p>
+    <div style="margin-top: var(--s-5); display: flex; flex-wrap: wrap; gap: var(--s-3);">
+      <span class="pill pill--ghost">Auskick · ages 5–7</span>
+      <span class="pill pill--ghost">Juniors · ages 8–18</span>
+      <span class="pill pill--ghost">Girls' pathway U8–U18</span>
+    </div>
+  </div>
+</section>
+
+<!-- Pathway picker (overlapping the hero) ================================ -->
+<section class="section pathway-pick" style="padding-top: 0;">
+  <div class="wrap">
+    <div class="pathway-pick__grid">
+      <a class="pp-card" href="https://play.afl/auskick">
+        <div class="pp-card__head">
+          <span class="pp-card__icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.4 6.2 6.6.5-5 4.4 1.5 6.4L12 16l-5.5 3.5 1.5-6.4-5-4.4 6.6-.5z"/></svg></span>
+          <div>
+            <div class="pp-card__age">Ages 5 – 7</div>
+            <h3>Auskick</h3>
+          </div>
+        </div>
+        <div class="pp-card__body">
+          <p>Saturday-morning fundamentals. The friendliest place to learn the game.</p>
+          <ul>
+            <li>Saturdays at Lloyd Park · 9:00am</li>
+            <li>Includes Auskick pack (jumper, ball, backpack)</li>
+            <li>No previous experience required</li>
+          </ul>
+        </div>
+        <div class="pp-card__cta">
+          <span class="btn btn--primary">Register for Auskick
+            <svg class="btn__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </span>
+          <p style="margin: var(--s-3) 0 0; font-size: 0.8125rem; color: var(--muted);">Opens in PlayHQ · play.afl/auskick</p>
+        </div>
+      </a>
+
+      <a class="pp-card" href="https://www.playhq.com/afl/org/langwarrin-community-football-club/96f37aee">
+        <div class="pp-card__head">
+          <span class="pp-card__icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a15 15 0 0 1 0 20"/><path d="M12 2a15 15 0 0 0 0 20"/><line x1="2" y1="12" x2="22" y2="12"/></svg></span>
+          <div>
+            <div class="pp-card__age">Ages 8 – 18</div>
+            <h3>Juniors &amp; Youth</h3>
+          </div>
+        </div>
+        <div class="pp-card__body">
+          <p>U8 to U17 boys, U8 to U18 girls. Sundays in the FDJFL.</p>
+          <ul>
+            <li>Sunday matches · April – August 2026</li>
+            <li>Tuesday &amp; Thursday training (age-group dependent)</li>
+            <li>Full girls' pathway, one of only four FDJFL clubs to offer U8–U18</li>
+          </ul>
+        </div>
+        <div class="pp-card__cta">
+          <span class="btn btn--primary">Register for Juniors
+            <svg class="btn__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </span>
+          <p style="margin: var(--s-3) 0 0; font-size: 0.8125rem; color: var(--muted);">Opens in PlayHQ · LJFC org</p>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Fees ================================================================== -->
+<section class="section">
+  <div class="wrap">
+    <span class="eyebrow">Fees &amp; concessions</span>
+    <h2 style="max-width: 22ch;">Transparent pricing for the 2026 season.</h2>
+    <p class="lead">All fees include AFL/FDJFL registration, insurance, training, match days, and end-of-season presentation.</p>
+
+    <div class="fee-grid">
+      <div class="fee">
+        <h4>Auskick</h4>
+        <div class="fee__price">$120 <span>· per player</span></div>
+        <p style="margin: 0; font-size: 0.875rem; color: var(--muted);">Ages 5–7</p>
+        <ul>
+          <li>AFL Auskick pack</li>
+          <li>Saturday morning sessions</li>
+          <li>End-of-season medal</li>
+        </ul>
+      </div>
+      <div class="fee is-feature">
+        <span class="pill pill--solid" style="position: absolute; top: 16px; right: 16px;">Most common</span>
+        <h4>Juniors U8 – U17</h4>
+        <div class="fee__price">$240 <span>· per player</span></div>
+        <p style="margin: 0; font-size: 0.875rem; color: var(--muted);">Boys &amp; girls</p>
+        <ul>
+          <li>Match-day playing fees</li>
+          <li>Two training sessions per week</li>
+          <li>FDJFL registration &amp; insurance</li>
+          <li>Presentation night</li>
+        </ul>
+      </div>
+      <div class="fee">
+        <h4>Family discount</h4>
+        <div class="fee__price">−$40 <span>· per extra child</span></div>
+        <p style="margin: 0; font-size: 0.875rem; color: var(--muted);">Auto-applied at checkout</p>
+        <ul>
+          <li>Sibling discount</li>
+          <li>Active Kids vouchers accepted</li>
+          <li>Payment plans available, email us</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="callout" style="margin-top: var(--s-5);">
+      <strong>Get Active Kids voucher</strong>
+      Eligible Victorian families can claim a $200 Get Active Kids voucher per child. We accept these directly at registration, see the <a href="#">voucher info sheet (PDF)</a> for eligibility and how to apply.
+    </div>
+  </div>
+</section>
+
+<!-- Key dates ============================================================= -->
+<section class="section" style="background: var(--surface-2);">
+  <div class="wrap">
+    <span class="eyebrow">2026 season at a glance</span>
+    <h2 style="max-width: 22ch;">Key dates</h2>
+
+    <div class="key-dates" style="margin-top: var(--s-5);">
+      <div class="key-date">
+        <strong>Mon 2 Mar</strong>
+        <span>Pre-season training begins</span>
+      </div>
+      <div class="key-date">
+        <strong>Sat 12 Apr</strong>
+        <span>Auskick Round 1 · Lloyd Park</span>
+      </div>
+      <div class="key-date">
+        <strong>Sun 13 Apr</strong>
+        <span>FDJFL Round 1</span>
+      </div>
+      <div class="key-date">
+        <strong>Sun 24 Aug</strong>
+        <span>Grand Finals · AFLSE</span>
+      </div>
+    </div>
+
+    <p style="margin-top: var(--s-4); font-size: 0.875rem; color: var(--muted);">
+      <em>Dates indicative, confirmed dates publish via the FDJFL closer to the season.</em>
+    </p>
+  </div>
+</section>
+
+<!-- FAQ =================================================================== -->
+<section class="section">
+  <div class="wrap wrap--narrow">
+    <span class="eyebrow">Frequently asked</span>
+    <h2>Registration FAQ</h2>
+
+    <div class="accordion">
+      <details open>
+        <summary>What if my age group is at capacity?</summary>
+        <div class="a-body">
+          <p>Some age groups fill quickly, particularly the popular U10 and U12 divisions. If your age group shows as full at registration, please email <a href="mailto:registrar@langyjfc.com">registrar@langyjfc.com</a> with your child's name, date of birth and contact details to be added to the wait list. We open spots regularly as squads finalise.</p>
+        </div>
+      </details>
+      <details>
+        <summary>Where and when does training happen?</summary>
+        <div class="a-body">
+          <p>Training is at Lloyd Park, Langwarrin. Auskick is Saturday mornings (9:00–10:00am during the season). Junior teams typically train on Tuesday and Thursday evenings, with the schedule finalised by your team coach in March.</p>
+        </div>
+      </details>
+      <details>
+        <summary>What does the registration fee include?</summary>
+        <div class="a-body">
+          <p>Your fee covers FDJFL registration, AFL personal-accident insurance, two training sessions per week, all home and away match-day costs, umpire fees, and end-of-season presentation. Auskick fees include the official AFL Auskick pack (jumper, ball, drawstring bag).</p>
+        </div>
+      </details>
+      <details>
+        <summary>Can my child play in a different age group?</summary>
+        <div class="a-body">
+          <p>Age groups are based on year of birth as at 1 January 2026 (per FDJFL rules). Permits to "play up" or "play down" are considered by the league on a case-by-case basis, speak to our registrar before registering if you'd like to apply.</p>
+        </div>
+      </details>
+      <details>
+        <summary>How does the girls' pathway work?</summary>
+        <div class="a-body">
+          <p>LJFC fields girls-only teams from U8 right through to U18, in addition to mixed teams in the younger age groups. Many girls play in mixed teams in the U8–U10 grades and move to a girls-only team at U11 or U12. We're happy to help you choose what works best for your daughter.</p>
+        </div>
+      </details>
+      <details>
+        <summary>What is the refund policy?</summary>
+        <div class="a-body">
+          <p>Full refunds are available before Round 1. After the season starts, refunds are pro-rata and exclude FDJFL/AFL portions of the fee that have already been remitted. See the <a href="#">2026 Registration Policy (PDF)</a> for full details.</p>
+        </div>
+      </details>
+      <details>
+        <summary>Do you accept Get Active Kids vouchers?</summary>
+        <div class="a-body">
+          <p>Yes, the $200 Victorian Government Get Active Kids voucher is accepted at registration. Apply for the voucher first via Service Victoria, then enter the voucher code at checkout.</p>
+        </div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- Footer ================================================================ -->
+<footer class="site-footer">
+  <div class="stripe-rule"></div>
+  <div class="wrap site-footer__grid">
+    <div>
+      <div class="site-footer__brand">
+        <img src="assets/logo.png" alt="" />
+        <div><strong>Langwarrin<br />Junior FC</strong><small>Est. 1925 · Lloyd Park</small></div>
+      </div>
+      <div class="site-footer__safe">
+        <strong>Child safety</strong>
+        LJFC has zero tolerance for child abuse. We are committed to a child-safe and child-friendly environment for all junior players.
+      </div>
+    </div>
+    <div>
+      <h4>Club</h4>
+      <ul>
+        <li><a href="about.html">About</a></li>
+        <li><a href="about.html">Committee</a></li>
+        <li><a href="about.html">Coaches &amp; Managers</a></li>
+        <li><a href="about.html">Good Sports Club</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Players</h4>
+      <ul>
+        <li><a href="register.html">Register</a></li>
+        <li><a href="player-info.html">Player Information</a></li>
+        <li><a href="about.html">Code of Conduct</a></li>
+        <li><a href="about.html">Player Care</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Connect</h4>
+      <ul>
+        <li><a href="mailto:registrar@langyjfc.com">registrar@langyjfc.com</a></li>
+        <li><a href="mailto:secretary@langyjfc.com">secretary@langyjfc.com</a></li>
+        <li><a href="tel:+61410679422">+61 410 679 422</a></li>
+        <li><a href="contact.html">Lloyd Park, Langwarrin VIC</a></li>
+      </ul>
+      <div class="site-footer__social" style="margin-top: var(--s-3);">
+        <a href="#" aria-label="Facebook"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M22 12.06C22 6.5 17.52 2 12 2S2 6.5 2 12.06c0 5 3.66 9.15 8.44 9.94v-7.03H7.9v-2.91h2.54V9.85c0-2.51 1.49-3.89 3.77-3.89 1.09 0 2.24.2 2.24.2v2.46H15.2c-1.24 0-1.63.77-1.63 1.56v1.88h2.78l-.44 2.91h-2.34V22c4.78-.79 8.43-4.94 8.43-9.94z"/></svg></a>
+        <a href="#" aria-label="Instagram"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+      </div>
+    </div>
+  </div>
+  <div class="wrap site-footer__bottom">
+    <span>© 2026 Langwarrin Community Football Club Inc. · ABN 74 848 607 387</span>
+    <span>Frankston &amp; District Junior Football League</span>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

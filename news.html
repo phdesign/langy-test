@@ -1,0 +1,295 @@
+<!--
+  ux3 - monochrome restyle of /ux/news.html.
+  Editorial card grid, category pills, filter chips, search, pagination.
+-->
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>News &amp; Kanga Noos - Langwarrin Junior FC</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet"
+  href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" />
+<link rel="stylesheet" href="styles.css" />
+<style>
+  .pagination {
+    display: flex; align-items: center; justify-content: center;
+    gap: var(--s-2);
+    margin-top: var(--s-7);
+  }
+  .pagination a, .pagination span {
+    display: inline-flex; align-items: center; justify-content: center;
+    min-width: 40px; height: 40px;
+    border-radius: 50%;
+    font-family: var(--display); font-weight: 700;
+    text-decoration: none;
+    color: var(--blue-deep);
+    border: 1px solid var(--line);
+    padding: 0 12px;
+    letter-spacing: 0.05em;
+  }
+  .pagination .is-current { background: var(--blue); color: var(--surface); border-color: var(--blue); }
+  .pagination a:hover { border-color: var(--blue); color: var(--blue); text-decoration: none; }
+  .news-toolbar {
+    display: grid;
+    gap: var(--s-3);
+    grid-template-columns: 1fr;
+    margin: var(--s-5) 0 var(--s-6);
+  }
+  @media (min-width: 768px) {
+    .news-toolbar { grid-template-columns: 1fr auto; align-items: center; }
+  }
+  .news-search {
+    display: flex; gap: var(--s-2);
+    background: var(--surface); border: 1px solid var(--line); border-radius: 999px;
+    padding: 6px 6px 6px 16px; align-items: center;
+  }
+  .news-search svg { color: var(--muted); flex-shrink: 0; }
+  .news-search input {
+    border: 0; flex: 1; padding: 8px 4px; font-family: var(--body-face);
+    font-size: 0.9375rem; background: transparent; min-width: 0;
+  }
+  .news-search input:focus { outline: 0; }
+  .news-search button {
+    background: var(--blue); color: var(--surface);
+    border: 0; padding: 8px 14px; border-radius: 999px;
+    font-family: var(--display); font-weight: 700; letter-spacing: 0.08em;
+    text-transform: uppercase; font-size: 0.78rem; cursor: pointer;
+  }
+  .news-search button:hover { background: var(--blue-dark); }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="site-header__inner">
+    <a href="home.html" class="site-header__brand"><img src="assets/logo.png" alt="" />
+      <div class="site-header__wordmark">Langwarrin Junior FC<span>Est. 1925</span></div>
+    </a>
+    <nav class="site-nav" aria-label="Primary">
+      <a href="home.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="news.html" class="is-active">News</a>
+      <a href="player-info.html">Player Info</a>
+      <a href="sponsors.html">Sponsors</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <a href="register.html" class="site-header__cta">Register 2026</a>
+    <button class="hamburger" aria-label="Open menu" aria-expanded="false" data-hamburger>
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+    </button>
+  </div>
+</header>
+<div class="mobile-drawer" data-drawer aria-label="Mobile menu">
+  <ul>
+    <li><a href="home.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="news.html">News &amp; Events</a></li>
+    <li><a href="player-info.html">Player Information</a></li>
+    <li><a href="register.html">Register</a></li>
+    <li><a href="sponsors.html">Sponsors</a></li>
+  </ul>
+  <a class="btn btn--primary" href="register.html">Register for 2026</a>
+</div>
+
+<!-- Banner ================================================================ -->
+<section class="page-banner">
+  <div class="page-banner__media" style="background-image: url('assets/photos/banner-news.jpg');"></div>
+  <div class="page-banner__overlay"></div>
+  <div class="page-banner__inner">
+    <div class="page-banner__crumbs"><a href="home.html">Home</a><span>·</span>News</div>
+    <h1 class="page-banner__title">News &amp; Kanga Noos</h1>
+    <p class="page-banner__sub">Match reports, club announcements, and the round-by-round Kanga Noos newsletter.</p>
+  </div>
+</section>
+
+<!-- Filter + grid ========================================================= -->
+<section class="section">
+  <div class="wrap">
+
+    <div class="news-toolbar">
+      <div class="chips" data-chips role="tablist" aria-label="Filter news">
+        <a href="#" class="chip is-active">All</a>
+        <a href="#" class="chip">Match Reports</a>
+        <a href="#" class="chip">Club</a>
+        <a href="#" class="chip">Auskick</a>
+        <a href="#" class="chip">Girls</a>
+        <a href="#" class="chip">U10–U12</a>
+        <a href="#" class="chip">U13–U18</a>
+        <a href="#" class="chip">Kanga Noos</a>
+      </div>
+      <form class="news-search" role="search" onsubmit="return false;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35"/></svg>
+        <input type="search" placeholder="Search news..." aria-label="Search news" />
+        <button type="submit">Go</button>
+      </form>
+    </div>
+
+    <div class="news-grid">
+      <a class="news-card news-card--featured" href="#">
+        <div class="news-card__media" style="background-image: url('assets/teams/u14-girls-kangas.jpg');">
+          <span class="pill pill--solid news-card__pill">Match Report</span>
+        </div>
+        <div class="news-card__body">
+          <div class="news-card__meta">12 April 2026 · U14 Girls Kangas</div>
+          <h3 class="news-card__title">Girls Kangas open the 2026 campaign with a 38-point win</h3>
+          <p class="news-card__excerpt">A dominant first quarter set the tone, the U14 Girls Kangas put six goals on the board before the long break, defending the 2025 premiership in style. Captain's report and best on ground inside.</p>
+        </div>
+      </a>
+
+      <a class="news-card" href="#">
+        <div class="news-card__media" style="background-image: url('assets/teams/u17-blue.jpg');">
+          <span class="pill news-card__pill">Club</span>
+        </div>
+        <div class="news-card__body">
+          <div class="news-card__meta">8 April 2026</div>
+          <h3 class="news-card__title">Round 1 wrap: every Roo team takes the field</h3>
+          <p class="news-card__excerpt">From Auskick at 8am to U17 Blue under lights, Round 1 was a club-wide statement of intent.</p>
+        </div>
+      </a>
+
+      <a class="news-card" href="#">
+        <div class="news-card__media" style="background-image: url('assets/photos/auskick.jpg');">
+          <span class="pill pill--solid news-card__pill">Auskick</span>
+        </div>
+        <div class="news-card__body">
+          <div class="news-card__meta">2 April 2026</div>
+          <h3 class="news-card__title">Auskick numbers up 14%, 2026 capacity reached</h3>
+          <p class="news-card__excerpt">Saturday morning is back at Lloyd Park. Wait list now open via the registration page.</p>
+        </div>
+      </a>
+
+      <a class="news-card" href="#">
+        <div class="news-card__media" style="background-image: url('assets/teams/u13-kangas.jpg');">
+          <span class="pill news-card__pill">U13 Kangas</span>
+        </div>
+        <div class="news-card__body">
+          <div class="news-card__meta">29 March 2026</div>
+          <h3 class="news-card__title">U13 Kangas defend their flag at Centenary Cup</h3>
+          <p class="news-card__excerpt">A pre-season hit-out against Edithvale-Aspendale at Lloyd Park. Centenary jumpers worn for the first time.</p>
+        </div>
+      </a>
+
+      <a class="news-card" href="#">
+        <div class="news-card__media" style="background-image: url('assets/photos/indigenous-round.jpg');">
+          <span class="pill pill--solid news-card__pill">Club</span>
+        </div>
+        <div class="news-card__body">
+          <div class="news-card__meta">22 March 2026</div>
+          <h3 class="news-card__title">Indigenous Round jumpers unveiled for 2026</h3>
+          <p class="news-card__excerpt">Designed in partnership with a local Bunurong artist, the new guernsey will be worn across all senior age groups in Round 9.</p>
+        </div>
+      </a>
+
+      <a class="news-card" href="#">
+        <div class="news-card__media" style="background-image: url('assets/teams/u15-white.jpg');">
+          <span class="pill news-card__pill">U15 White</span>
+        </div>
+        <div class="news-card__body">
+          <div class="news-card__meta">15 March 2026</div>
+          <h3 class="news-card__title">Coach announcement: Wes Porter to lead U15 White</h3>
+          <p class="news-card__excerpt">Returning premiership coach Wes Porter takes the reins of U15 White for 2026. Pre-season training Tuesdays and Thursdays.</p>
+        </div>
+      </a>
+
+      <a class="news-card" href="#">
+        <div class="news-card__media" style="background-image: url('assets/teams/u12-blue.jpg');">
+          <span class="pill pill--solid news-card__pill">Kanga Noos</span>
+        </div>
+        <div class="news-card__body">
+          <div class="news-card__meta">10 March 2026 · Newsletter</div>
+          <h3 class="news-card__title">Kanga Noos, March 2026 issue</h3>
+          <p class="news-card__excerpt">Pre-season training schedules, registration update, sponsor welcome, and the season-launch event details.</p>
+        </div>
+      </a>
+
+      <a class="news-card" href="#">
+        <div class="news-card__media" style="background-image: url('assets/teams/u16-girls.jpg');">
+          <span class="pill news-card__pill">Girls</span>
+        </div>
+        <div class="news-card__body">
+          <div class="news-card__meta">28 February 2026</div>
+          <h3 class="news-card__title">Girls' pathway: 4 new sides for 2026 across U8–U18</h3>
+          <p class="news-card__excerpt">LJFC remains one of only four clubs in the league with teams in every girls' age group from U8 through to U18.</p>
+        </div>
+      </a>
+
+      <a class="news-card" href="#">
+        <div class="news-card__media" style="background-image: url('assets/photos/committee.jpg');">
+          <span class="pill pill--solid news-card__pill">Club</span>
+        </div>
+        <div class="news-card__body">
+          <div class="news-card__meta">2 February 2026 · AGM</div>
+          <h3 class="news-card__title">2026 committee elected at AGM</h3>
+          <p class="news-card__excerpt">Brad McNeilage continues as President. Wes Porter and Paul Muddiman re-elected as Vice Presidents.</p>
+        </div>
+      </a>
+    </div>
+
+    <nav class="pagination" aria-label="News pagination">
+      <a href="#" aria-label="Previous">‹</a>
+      <span class="is-current" aria-current="page">1</span>
+      <a href="#">2</a>
+      <a href="#">3</a>
+      <a href="#">4</a>
+      <a href="#" aria-label="Next">›</a>
+    </nav>
+  </div>
+</section>
+
+<!-- Footer ================================================================ -->
+<footer class="site-footer">
+  <div class="stripe-rule"></div>
+  <div class="wrap site-footer__grid">
+    <div>
+      <div class="site-footer__brand">
+        <img src="assets/logo.png" alt="" />
+        <div><strong>Langwarrin<br />Junior FC</strong><small>Est. 1925 · Lloyd Park</small></div>
+      </div>
+      <div class="site-footer__safe">
+        <strong>Child safety</strong>
+        LJFC has zero tolerance for child abuse. We are committed to a child-safe and child-friendly environment for all junior players.
+      </div>
+    </div>
+    <div>
+      <h4>Club</h4>
+      <ul>
+        <li><a href="about.html">About</a></li>
+        <li><a href="about.html">Committee</a></li>
+        <li><a href="about.html">Coaches &amp; Managers</a></li>
+        <li><a href="about.html">Good Sports Club</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Players</h4>
+      <ul>
+        <li><a href="register.html">Register</a></li>
+        <li><a href="player-info.html">Player Information</a></li>
+        <li><a href="about.html">Code of Conduct</a></li>
+        <li><a href="about.html">Player Care</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Connect</h4>
+      <ul>
+        <li><a href="mailto:secretary@langyjfc.com">secretary@langyjfc.com</a></li>
+        <li><a href="tel:+61410679422">+61 410 679 422</a></li>
+        <li><a href="contact.html">Lloyd Park, Langwarrin VIC</a></li>
+      </ul>
+      <div class="site-footer__social" style="margin-top: var(--s-3);">
+        <a href="#" aria-label="Facebook"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M22 12.06C22 6.5 17.52 2 12 2S2 6.5 2 12.06c0 5 3.66 9.15 8.44 9.94v-7.03H7.9v-2.91h2.54V9.85c0-2.51 1.49-3.89 3.77-3.89 1.09 0 2.24.2 2.24.2v2.46H15.2c-1.24 0-1.63.77-1.63 1.56v1.88h2.78l-.44 2.91h-2.34V22c4.78-.79 8.43-4.94 8.43-9.94z"/></svg></a>
+        <a href="#" aria-label="Instagram"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+      </div>
+    </div>
+  </div>
+  <div class="wrap site-footer__bottom">
+    <span>© 2026 Langwarrin Community Football Club Inc. · ABN 74 848 607 387</span>
+    <span>Frankston &amp; District Junior Football League</span>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

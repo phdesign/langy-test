@@ -1,0 +1,941 @@
+<!--
+  v4 - Player Information.
+  Content lifted from langyjfc.com.au/playerinformation.html (the post-registration
+  checklist + gear breakdown) and the live IA sub-page set
+  (Registration / Code of Conduct / Club Song / Player Care / Child Safeguarding).
+
+  Structure (inspired by v1 register.html + page.html patterns):
+    1. Sticky header
+    2. Page banner
+    3. Hub strip - five sub-topic cards (the live-site sub-menu)
+    4. "Now what?" - post-registration checklist (numbered cards)
+    5. Gear & uniform - Families provide vs Club provides + Optional merch
+    6. Training & teams timeline - pre-season dates per age group
+    7. Help on game day - volunteer + first-aid callouts
+    8. Downloads + key contacts (sidebar in article)
+    9. Footer
+-->
+<!doctype html>
+<html lang="en-AU">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Player Information - Langwarrin Junior Football Club</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* ===== hub strip - five sub-topic cards (matches live IA sub-menu) ===== */
+    .hub-strip {
+      margin-top: -64px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hub-strip__grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--s-3);
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--r-3);
+      padding: var(--s-3);
+      box-shadow: var(--shadow-2);
+    }
+
+    @media (min-width: 640px) {
+      .hub-strip__grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .hub-strip__grid {
+        grid-template-columns: repeat(5, 1fr);
+        gap: 1px;
+        padding: 0;
+        background: var(--line);
+      }
+    }
+
+    .hub-card {
+      background: var(--surface);
+      padding: var(--s-4) var(--s-4);
+      text-decoration: none;
+      color: var(--blue-deep);
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      border-radius: var(--r-2);
+      transition: background .15s, color .15s;
+      min-height: 110px;
+    }
+
+    @media (min-width: 1024px) {
+      .hub-card {
+        border-radius: 0;
+      }
+
+      .hub-card:first-child {
+        border-top-left-radius: var(--r-3);
+        border-bottom-left-radius: var(--r-3);
+      }
+
+      .hub-card:last-child {
+        border-top-right-radius: var(--r-3);
+        border-bottom-right-radius: var(--r-3);
+      }
+    }
+
+    .hub-card:hover {
+      background: var(--blue);
+      color: var(--surface);
+      text-decoration: none;
+    }
+
+    .hub-card:hover .hub-card__num {
+      color: rgba(255, 255, 255, 0.5);
+    }
+
+    .hub-card:hover .hub-card__sub {
+      color: rgba(255, 255, 255, 0.85);
+    }
+
+    .hub-card__num {
+      font-family: var(--display);
+      font-weight: 700;
+      font-size: 0.7rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--blue);
+      transition: color .15s;
+    }
+
+    .hub-card__title {
+      font-family: var(--display);
+      font-weight: 700;
+      font-size: 1.125rem;
+      line-height: 1;
+      text-transform: uppercase;
+      letter-spacing: 0.005em;
+    }
+
+    .hub-card__sub {
+      font-size: 0.8125rem;
+      color: var(--muted);
+      line-height: 1.4;
+      transition: color .15s;
+    }
+
+    /* ===== checklist - numbered cards ===== */
+    .checklist {
+      display: grid;
+      gap: var(--s-3);
+      grid-template-columns: 1fr;
+      counter-reset: cl;
+      margin-top: var(--s-5);
+    }
+
+    @media (min-width: 768px) {
+      .checklist {
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--s-4);
+      }
+    }
+
+    .checklist__item {
+      counter-increment: cl;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--r-2);
+      padding: var(--s-5);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: var(--s-2);
+    }
+
+    .checklist__item::before {
+      content: counter(cl, decimal-leading-zero);
+      position: absolute;
+      top: var(--s-4);
+      right: var(--s-4);
+      font-family: var(--display);
+      font-weight: 800;
+      font-size: 1.25rem;
+      color: var(--blue);
+      letter-spacing: 0.02em;
+    }
+
+    .checklist__item h3 {
+      font-size: 1.125rem;
+      color: var(--blue-deep);
+      margin: 0;
+      padding-right: 48px;
+      line-height: 1.1;
+    }
+
+    .checklist__item p {
+      font-size: 0.9375rem;
+      color: var(--body);
+      line-height: 1.55;
+      margin: 0;
+    }
+
+    .checklist__item .when {
+      font-family: var(--display);
+      font-weight: 700;
+      font-size: 0.7rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--blue);
+    }
+
+    /* ===== gear - two-column "Families / Club provides" ===== */
+    .gear-grid {
+      display: grid;
+      gap: var(--s-4);
+      grid-template-columns: 1fr;
+      margin-top: var(--s-5);
+    }
+
+    @media (min-width: 768px) {
+      .gear-grid {
+        grid-template-columns: 2fr 1fr 1fr;
+      }
+    }
+
+    .gear-card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--r-2);
+      padding: var(--s-5);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .gear-card.is-club {
+      background:
+        linear-gradient(rgba(29, 52, 115, 0.82), rgba(29, 52, 115, 0.94)),
+        url('assets/photos/playing-jumper.jpg') center/cover no-repeat;
+      color: var(--surface);
+      border-color: var(--blue-deep);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .gear-card.is-club h3 {
+      color: var(--surface);
+    }
+
+    .gear-card.is-club .gear-card__tag {
+      color: var(--accent);
+    }
+
+    .gear-card.is-club ul li {
+      color: rgba(255, 255, 255, 0.92);
+    }
+
+    .gear-card.is-club ul li::before {
+      background: var(--accent);
+    }
+
+    .gear-card__tag {
+      font-family: var(--display);
+      font-weight: 700;
+      font-size: 0.7rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 6px;
+    }
+
+    .gear-card h3 {
+      margin: 0 0 var(--s-3);
+      font-size: 1.5rem;
+      color: var(--blue-deep);
+    }
+
+    .gear-card ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .gear-card li {
+      padding: 8px 0 8px 22px;
+      position: relative;
+      font-size: 0.9375rem;
+      line-height: 1.5;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .gear-card:not(.is-club) li {
+      border-bottom-color: var(--line);
+    }
+
+    .gear-card li:last-child {
+      border-bottom: 0;
+    }
+
+    .gear-card li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 14px;
+      width: 12px;
+      height: 2px;
+      background: var(--blue);
+    }
+
+    .gear-card li small {
+      display: block;
+      font-size: 0.78rem;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+
+    .gear-card.is-club li small {
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    /* ===== training timeline - bands per age group ===== */
+    .timeline {
+      display: grid;
+      gap: var(--s-3);
+      grid-template-columns: 1fr;
+      margin-top: var(--s-5);
+    }
+
+    @media (min-width: 768px) {
+      .timeline {
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--s-4);
+      }
+    }
+
+    .timeline-band {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-left: 4px solid var(--blue);
+      border-radius: 0 var(--r-2) var(--r-2) 0;
+      padding: var(--s-4) var(--s-5);
+    }
+
+    .timeline-band__when {
+      font-family: var(--display);
+      font-weight: 700;
+      font-size: 0.7rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 4px;
+    }
+
+    .timeline-band__group {
+      font-family: var(--display);
+      font-weight: 700;
+      font-size: 1.25rem;
+      color: var(--blue-deep);
+      line-height: 1.1;
+      margin-bottom: 4px;
+      text-transform: uppercase;
+    }
+
+    .timeline-band__detail {
+      font-size: 0.9375rem;
+      color: var(--body);
+      line-height: 1.5;
+      margin: 0;
+    }
+
+    /* ===== help-on-game-day - two split cards on dark + light surfaces ===== */
+    .help-grid {
+      display: grid;
+      gap: var(--s-4);
+      grid-template-columns: 1fr;
+      margin-top: var(--s-5);
+    }
+
+    @media (min-width: 768px) {
+      .help-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .help-card {
+      border-radius: var(--r-3);
+      padding: var(--s-6) var(--s-5);
+      border: 1px solid var(--line);
+      background: var(--surface);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .help-card.is-dark {
+      background:
+        linear-gradient(rgba(29, 52, 115, 0.82), rgba(29, 52, 115, 0.94)),
+        url('assets/photos/injury.jpg') center/cover no-repeat;
+      color: var(--surface);
+      border-color: var(--blue-deep);
+    }
+
+    .help-card>* {
+      position: relative;
+      z-index: 1;
+    }
+
+    .help-card__icon {
+      width: 48px;
+      height: 48px;
+      border-radius: var(--r-2);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: var(--s-3);
+      background: var(--blue-tint);
+      color: var(--blue);
+    }
+
+    .help-card.is-dark .help-card__icon {
+      background: rgba(255, 255, 255, 0.10);
+      color: var(--accent);
+    }
+
+    .help-card h3 {
+      margin: 0 0 var(--s-2);
+    }
+
+    .help-card.is-dark h3 {
+      color: var(--surface);
+    }
+
+    .help-card p {
+      color: var(--body);
+      font-size: 0.9375rem;
+      margin: 0 0 var(--s-4);
+      line-height: 1.55;
+    }
+
+    .help-card.is-dark p {
+      color: rgba(255, 255, 255, 0.88);
+    }
+
+    /* ===== sidebar contact list ===== */
+    .contact-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .contact-list li {
+      border-bottom: 1px solid var(--line);
+      padding: var(--s-3) 0;
+    }
+
+    .contact-list li:last-child {
+      border-bottom: 0;
+    }
+
+    .contact-list strong {
+      display: block;
+      font-family: var(--display);
+      font-weight: 700;
+      font-size: 0.7rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 4px;
+    }
+
+    .contact-list a {
+      font-size: 0.9375rem;
+      word-break: break-all;
+      color: var(--blue-deep);
+      font-weight: 500;
+    }
+
+    .contact-list a:hover {
+      color: var(--blue);
+    }
+
+    .page-banner__media {
+      background-position: 50% 20%;
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a href="home.html" class="site-header__brand"><img src="assets/logo.png" alt="" />
+        <div class="site-header__wordmark">Langwarrin Junior FC<span>Est. 1925</span></div>
+      </a>
+      <nav class="site-nav" aria-label="Primary">
+        <a href="home.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="news.html">News</a>
+        <a href="player-info.html" class="is-active">Player Info</a>
+        <a href="sponsors.html">Sponsors</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <a href="register.html" class="site-header__cta">Register 2026</a>
+      <button class="hamburger" aria-label="Open menu" aria-expanded="false" data-hamburger>
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"
+          stroke-linecap="round">
+          <path d="M3 6h18M3 12h18M3 18h18" />
+        </svg>
+      </button>
+    </div>
+  </header>
+  <div class="mobile-drawer" data-drawer aria-label="Mobile menu">
+    <ul>
+      <li><a href="home.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="news.html">News &amp; Events</a></li>
+      <li><a href="player-info.html">Player Information</a></li>
+      <li><a href="register.html">Register</a></li>
+      <li><a href="sponsors.html">Sponsors</a></li>
+      <li><a href="about.html">Coaches &amp; Managers</a></li>
+      <li><a href="about.html">Auskick</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <a class="btn btn--primary" href="register.html">Register for 2026</a>
+  </div>
+
+  <!-- Banner ================================================================ -->
+  <section class="page-banner">
+    <div class="page-banner__media" style="background-image: url('assets/photos/banner-player-info.jpg');"></div>
+    <div class="page-banner__overlay"></div>
+    <div class="page-banner__inner">
+      <div class="page-banner__crumbs"><a href="home.html">Home</a><span>·</span>Player Information</div>
+      <h1 class="page-banner__title">Player Information</h1>
+      <p class="page-banner__sub">Everything you need before your first kick at Lloyd Park, registration, codes of
+        conduct, gear, training dates, and how to help on game day.</p>
+    </div>
+  </section>
+
+  <!-- Hub strip - sub-topic cards =========================================== -->
+  <section class="section hub-strip" style="padding-top: 0;">
+    <div class="wrap">
+      <nav class="hub-strip__grid" aria-label="Player information topics">
+        <a class="hub-card" href="register.html">
+          <span class="hub-card__num">01 · Sign up</span>
+          <span class="hub-card__title">Registration</span>
+          <span class="hub-card__sub">Auskick + Juniors via PlayHQ.</span>
+        </a>
+        <a class="hub-card" href="#codes">
+          <span class="hub-card__num">02 · Behaviour</span>
+          <span class="hub-card__title">Code of Conduct</span>
+          <span class="hub-card__sub">Players, parents &amp; supporters.</span>
+        </a>
+        <a class="hub-card" href="#child-safe">
+          <span class="hub-card__num">03 · Safety</span>
+          <span class="hub-card__title">Child Safeguarding</span>
+          <span class="hub-card__sub">Zero tolerance · child-safe club.</span>
+        </a>
+        <a class="hub-card" href="#player-care">
+          <span class="hub-card__num">04 · Wellbeing</span>
+          <span class="hub-card__title">Player Care</span>
+          <span class="hub-card__sub">First aid &amp; concussion.</span>
+        </a>
+        <a class="hub-card" href="#club-song">
+          <span class="hub-card__num">05 · Tradition</span>
+          <span class="hub-card__title">Club Song</span>
+          <span class="hub-card__sub">Words to learn · Roos forever.</span>
+        </a>
+      </nav>
+    </div>
+  </section>
+
+  <!-- Checklist ============================================================= -->
+  <section class="section">
+    <div class="wrap">
+      <span class="eyebrow">Now you're registered</span>
+      <h2 style="max-width: 22ch;">What to do before Round 1.</h2>
+      <p class="lead">Once your child is registered for the 2026 season, work through these eight steps. Most are
+        straightforward, and if you get stuck, our committee is one email away.</p>
+
+      <div class="checklist">
+        <div class="checklist__item">
+          <span class="when">Sun 13 Apr 2026</span>
+          <h3>Lock in the season start date</h3>
+          <p>Round 1 of the FDJFL season kicks off Sunday 13 April 2026. Auskick starts the day before, Saturday 12
+            April. Add it to the family calendar - Sundays are sacred from April through August.</p>
+        </div>
+        <div class="checklist__item">
+          <h3>Send a birth certificate (new players only)</h3>
+          <p>If your child is new to football at LJFC, the FDJFL needs a copy of their birth certificate. Email it to <a
+              href="mailto:registrar@langyjfc.com">registrar@langyjfc.com</a> as soon as possible - registration isn't
+            complete until we have it.</p>
+        </div>
+        <div class="checklist__item">
+          <h3>Pay your fees by Round 1</h3>
+          <p>Registration fees need to be paid before Round 1. Payment plans are available for families that need them -
+            email our treasurer at <a href="mailto:treasurer@langyjfc.com">treasurer@langyjfc.com</a> to set one up.
+            Active Kids vouchers are accepted at checkout.</p>
+        </div>
+        <div class="checklist__item">
+          <h3>Sort out the gear</h3>
+          <p>Royal-blue shorts, royal-blue socks, mouthguard and football boots, see the kit list below. Most items are
+            available from our merch shed at Lloyd Park; check our socials for opening times.</p>
+        </div>
+        <div class="checklist__item">
+          <h3>Check your details on PlayHQ</h3>
+          <p>Make sure your contact phone number and email address on PlayHQ are current. Your team manager will use
+            these to send training schedules and weekly match-day updates.</p>
+        </div>
+        <div class="checklist__item">
+          <h3>Volunteer for game day</h3>
+          <p>Goal umpires, timekeepers, runners, water carriers, canteen helpers - every team needs a few parents to
+            step up. Register as a <a
+              href="https://www.playhq.com/afl/org/langwarrin-community-football-club-afl-south-east/96f37aee/register"
+              target="_blank" rel="noopener">volunteer on PlayHQ</a>. The kids love seeing their parents on the team.
+          </p>
+        </div>
+        <div class="checklist__item">
+          <h3>Got first aid? Tell us</h3>
+          <p>If you're first-aid trained and willing to volunteer as a trainer for your child's team, email a copy of
+            your certificate to <a href="mailto:firstaid@langyjfc.com">firstaid@langyjfc.com</a>. Trainers handle
+            on-field injuries and are vital to player safety.</p>
+        </div>
+        <div class="checklist__item">
+          <span class="when">Late Feb · early Mar</span>
+          <h3>Watch for your team announcement</h3>
+          <p>Our football manager will email you in late February or early March with your team, your coach, and
+            training details. Coaches will follow up with the training schedule and start asking for help with team
+            roles.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gear & uniform ======================================================== -->
+  <section class="section" style="background: var(--surface-2);" id="gear">
+    <div class="wrap">
+      <span class="eyebrow">Match-day kit</span>
+      <h2 style="max-width: 22ch;">What to bring, what we provide.</h2>
+      <p class="lead">Every Roo wears the same playing jumper, that's on us. The rest of the kit is yours to organise.
+        The merch shed at Lloyd Park stocks shorts and socks; mouthguards and boots are at any sports retailer.</p>
+
+      <div class="gear-grid">
+        <div class="gear-card">
+          <span class="gear-card__tag">Families to provide</span>
+          <h3>Your kit list</h3>
+          <ul>
+            <li>Royal-blue AFL football shorts<small>Available from the LJFC merch shed</small></li>
+            <li>Royal-blue football socks<small>Available from the LJFC merch shed</small></li>
+            <li>Mouthguard<small>Any sports retailer · or fitted by Frankston Denture Clinic at Open Day (private health
+                rebates available)</small></li>
+            <li>Football boots<small>Any sports retailer · stops needed for grass conditions</small></li>
+          </ul>
+        </div>
+        <div class="gear-card is-club">
+          <span class="gear-card__tag">LJFC provides</span>
+          <h3>On us</h3>
+          <ul>
+            <li>LJFC playing jumper<small>Worn match-days only · returned end of season</small></li>
+          </ul>
+        </div>
+        <div class="gear-card">
+          <span class="gear-card__tag">Optional</span>
+          <h3>Merch shed</h3>
+          <ul>
+            <li>Hoodies, jackets, training tops<small>Walk in or check the club socials for opening times</small></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Training timeline ===================================================== -->
+  <section class="section">
+    <div class="wrap">
+      <span class="eyebrow">Pre-season &amp; teams</span>
+      <h2 style="max-width: 22ch;">When does training start?</h2>
+      <p class="lead">Pre-season starts at different times for different age groups. If you need exact details before
+        your team is announced, drop the registrar a line.</p>
+
+      <div class="timeline">
+        <div class="timeline-band">
+          <div class="timeline-band__when">December 2025</div>
+          <div class="timeline-band__group">U12 – U17</div>
+          <p class="timeline-band__detail">Older age groups start pre-season in December. Schedules are confirmed by
+            your team coach as soon as squads are settled.</p>
+        </div>
+        <div class="timeline-band">
+          <div class="timeline-band__when">March 2026</div>
+          <div class="timeline-band__group">U8 – U11</div>
+          <p class="timeline-band__detail">Younger age groups start training in March, four to six weeks before Round 1.
+            Tuesday and Thursday evenings at Lloyd Park.</p>
+        </div>
+        <div class="timeline-band">
+          <div class="timeline-band__when">Late Feb · early Mar</div>
+          <div class="timeline-band__group">Team announcements</div>
+          <p class="timeline-band__detail">Football manager emails out team allocations. Coaches follow up with training
+            nights and team-role asks.</p>
+        </div>
+        <div class="timeline-band">
+          <div class="timeline-band__when">Sat 12 Apr 2026</div>
+          <div class="timeline-band__group">Auskick · Round 1</div>
+          <p class="timeline-band__detail">Saturday-morning fundamentals at Lloyd Park · 9:00am. Auskick pack handed out
+            at the first session.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Help on game day ====================================================== -->
+  <section class="section" style="background: var(--surface-2);">
+    <div class="wrap">
+      <span class="eyebrow">Volunteers</span>
+      <h2 style="max-width: 22ch;">It takes a community.</h2>
+      <p class="lead">Every team needs parents to help on game day - most jobs don't require any football knowledge,
+        just a willingness to be there.</p>
+
+      <div class="help-grid">
+        <div class="help-card">
+          <span class="help-card__icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+              <circle cx="9" cy="7" r="4" />
+              <path d="M22 11l-3 3-2-2" />
+            </svg></span>
+          <h3>Volunteer on game day</h3>
+          <p>Goal umpires, timekeepers, runners, water carriers, canteen helpers, coaches' assistants - pick what fits
+            your weekend. Coaches will ask at the start of the season.</p>
+          <a class="btn btn--primary"
+            href="https://www.playhq.com/afl/org/langwarrin-community-football-club-afl-south-east/96f37aee/register"
+            target="_blank" rel="noopener">
+            Register on PlayHQ
+            <svg class="btn__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M5 12h14M13 5l7 7-7 7" />
+            </svg>
+          </a>
+        </div>
+        <div class="help-card is-dark">
+          <span class="help-card__icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
+            </svg></span>
+          <h3>Trained in first aid?</h3>
+          <p>If you've got a current first-aid certificate and would step in as a trainer for your child's team, we'd
+            love to hear from you. Send a copy of your certificate.</p>
+          <a class="btn btn--white" href="mailto:firstaid@langyjfc.com">
+            firstaid@langyjfc.com
+            <svg class="btn__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M5 12h14M13 5l7 7-7 7" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Codes / safety / player care / club song =========================== -->
+  <section class="section">
+    <div class="wrap">
+      <div class="article">
+        <article class="article__body">
+
+          <h2 id="codes">Code of Conduct</h2>
+          <p>Football at LJFC is for the kids. We expect every player, parent, supporter, coach and committee member to
+            behave in a way that keeps the game fun, safe, and respectful for everyone, at training, on match day, and
+            around the club.</p>
+          <p>Our codes are based on the AFL community standards and apply at every Lloyd Park session. Read the full
+            PDFs in the sidebar.</p>
+
+          <div class="callout">
+            <strong>Three things we ask</strong>
+            Respect the umpires. Encourage every player on every team. Never shout instructions from the sideline - the
+            coaches have it covered.
+          </div>
+
+          <h2 id="child-safe">Child Safeguarding</h2>
+          <p>LJFC has zero tolerance for child abuse. We are committed to a child-safe and child-friendly environment
+            for all junior players. Every coach, team manager, trainer and committee member holds a current Working with
+            Children Check, and our Child Safeguarding Policy governs how we run sessions, communicate with parents, and
+            respond to any concern.</p>
+          <p>If you ever have a concern about a child's safety at LJFC, contact the President at <a
+              href="mailto:president@langyjfc.com">president@langyjfc.com</a> or our Child Safety Officer immediately.
+          </p>
+
+          <h2 id="player-care">Player Care</h2>
+          <p>Every match day at Lloyd Park has a qualified trainer rostered to the home team. We follow the AFL's
+            concussion protocols - any player who suffers a head knock is removed from play and assessed before any
+            return-to-play decision. The Concussion Management Poster (sidebar) is what our trainers and coaches work
+            from.</p>
+          <p>If your child has an existing injury or condition the coach should be aware of, tell them at the first
+            training session. Asthma plans, allergy plans and EpiPens are stored at the trainer's bench on match day.
+          </p>
+
+          <h2 id="club-song">Club Song</h2>
+          <p>Win a game, win a flag, win a wooden spoon - we sing it the same way. Lyrics get handed out at first
+            training. The kids learn it faster than the parents.</p>
+
+          <h2>Still got questions?</h2>
+          <p>If there's anything else you'd like to know, get in touch with a member of our <a
+              href="about.html">Executive Committee</a> - we're parents who play here too.</p>
+
+        </article>
+
+        <aside class="sidebar" aria-label="Downloads and contacts">
+          <h3>Downloads</h3>
+          <ul class="download-list">
+            <li>
+              <a href="#">
+                <span class="ico">PDF</span>
+                <span>Player Code of Conduct
+                  <span class="news-card__meta" style="display:block;margin:2px 0 0;">All players</span>
+                </span>
+                <span class="meta">120&nbsp;KB</span>
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <span class="ico">PDF</span>
+                <span>Parent / Guardian Code of Conduct
+                  <span class="news-card__meta" style="display:block;margin:2px 0 0;">Sideline expectations</span>
+                </span>
+                <span class="meta">140&nbsp;KB</span>
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <span class="ico">PDF</span>
+                <span>Child Safeguarding Policy
+                  <span class="news-card__meta" style="display:block;margin:2px 0 0;">2026 edition</span>
+                </span>
+                <span class="meta">280&nbsp;KB</span>
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <span class="ico">PDF</span>
+                <span>Concussion Management Poster
+                  <span class="news-card__meta" style="display:block;margin:2px 0 0;">AFL community</span>
+                </span>
+                <span class="meta">980&nbsp;KB</span>
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <span class="ico">PDF</span>
+                <span>2026 Registration Policy
+                  <span class="news-card__meta" style="display:block;margin:2px 0 0;">Fees, refunds, transfers</span>
+                </span>
+                <span class="meta">230&nbsp;KB</span>
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <span class="ico">PDF</span>
+                <span>Club Song · Lyrics
+                  <span class="news-card__meta" style="display:block;margin:2px 0 0;">Print &amp; sing</span>
+                </span>
+                <span class="meta">90&nbsp;KB</span>
+              </a>
+            </li>
+          </ul>
+
+          <h3 style="margin-top: var(--s-6);">Who to email</h3>
+          <ul class="contact-list">
+            <li>
+              <strong>Registrar</strong>
+              <a href="mailto:registrar@langyjfc.com">registrar@langyjfc.com</a>
+            </li>
+            <li>
+              <strong>Treasurer</strong>
+              <a href="mailto:treasurer@langyjfc.com">treasurer@langyjfc.com</a>
+            </li>
+            <li>
+              <strong>First aid</strong>
+              <a href="mailto:firstaid@langyjfc.com">firstaid@langyjfc.com</a>
+            </li>
+            <li>
+              <strong>Secretary</strong>
+              <a href="mailto:secretary@langyjfc.com">secretary@langyjfc.com</a>
+            </li>
+          </ul>
+
+          <div class="callout" style="margin-top: var(--s-5);">
+            <strong>Open Day</strong>
+            Frankston Denture Clinic is on-site to fit and mould mouthguards. Private health rebates available - bring
+            your card.
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer ================================================================ -->
+  <footer class="site-footer">
+    <div class="stripe-rule"></div>
+    <div class="wrap site-footer__grid">
+      <div>
+        <div class="site-footer__brand">
+          <img src="assets/logo.png" alt="" />
+          <div><strong>Langwarrin<br />Junior FC</strong><small>Est. 1925 · Lloyd Park</small></div>
+        </div>
+        <div class="site-footer__safe">
+          <strong>Child safety</strong>
+          LJFC has zero tolerance for child abuse. We are committed to a child-safe and child-friendly environment for
+          all junior players.
+        </div>
+      </div>
+      <div>
+        <h4>Club</h4>
+        <ul>
+          <li><a href="about.html">About</a></li>
+          <li><a href="about.html">Committee</a></li>
+          <li><a href="about.html">Coaches &amp; Managers</a></li>
+          <li><a href="about.html">Good Sports Club</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Players</h4>
+        <ul>
+          <li><a href="register.html">Register</a></li>
+          <li><a href="player-info.html">Player Information</a></li>
+          <li><a href="player-info.html#codes">Code of Conduct</a></li>
+          <li><a href="player-info.html#player-care">Player Care</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Connect</h4>
+        <ul>
+          <li><a href="mailto:secretary@langyjfc.com">secretary@langyjfc.com</a></li>
+          <li><a href="tel:+61410679422">+61 410 679 422</a></li>
+          <li><a href="contact.html">Lloyd Park, Langwarrin VIC</a></li>
+        </ul>
+        <div class="site-footer__social" style="margin-top: var(--s-3);">
+          <a href="https://www.facebook.com/langyjfc/" aria-label="Facebook"><svg width="18" height="18"
+              viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M22 12.06C22 6.5 17.52 2 12 2S2 6.5 2 12.06c0 5 3.66 9.15 8.44 9.94v-7.03H7.9v-2.91h2.54V9.85c0-2.51 1.49-3.89 3.77-3.89 1.09 0 2.24.2 2.24.2v2.46H15.2c-1.24 0-1.63.77-1.63 1.56v1.88h2.78l-.44 2.91h-2.34V22c4.78-.79 8.43-4.94 8.43-9.94z" />
+            </svg></a>
+          <a href="https://www.instagram.com/langwarrinjfc/" aria-label="Instagram"><svg width="18" height="18"
+              viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="2" y="2" width="20" height="20" rx="5" />
+              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+              <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+            </svg></a>
+        </div>
+      </div>
+    </div>
+    <div class="wrap site-footer__bottom">
+      <span>© 2026 Langwarrin Community Football Club Inc. · ABN 74 848 607 387</span>
+      <span>Frankston &amp; District Junior Football League</span>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+
+</html>

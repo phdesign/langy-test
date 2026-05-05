@@ -1,0 +1,23 @@
+# Dependencies
+node_modules/
+
+# Build artifacts (if using a bundler like Vite or Webpack)
+dist/
+build/
+out/
+.playwright-mcp/
+.screenshots/
+
+# Environment variables
+.env
+.env.local
+
+# Python venvs
+.venv*/
+
+# zips
+*.zip
+
+# Operating System files
+.DS_Store
+Thumbs.db

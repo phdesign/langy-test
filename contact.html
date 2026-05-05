@@ -1,0 +1,908 @@
+<!--
+  v4 - Contact.
+  Content lifted from langyjfc.com.au/contactus.html + committee.html.
+
+  Sections:
+    1. Sticky header
+    2. Page banner
+    3. Find us / Get in touch - split: address+map (left) | enquiry form (right)
+    4. Who to email - role-routed contact cards
+    5. Executive Committee 2026 - six person cards with phone + email
+    6. Match-day note (location/canteen)
+    7. Footer
+-->
+<!doctype html>
+<html lang="en-AU">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Contact - Langwarrin Junior Football Club</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* ===== split: address + map | form ===== */
+    .contact-split {
+      display: grid;
+      gap: var(--s-5);
+      grid-template-columns: 1fr;
+      margin-top: var(--s-5);
+    }
+
+    @media (min-width: 1024px) {
+      .contact-split {
+        grid-template-columns: 1fr 1fr;
+        gap: var(--s-7);
+        align-items: start;
+      }
+    }
+
+    .find-us {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--r-3);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .find-us__map {
+      height: 280px;
+      width: 100%;
+      border: 0;
+      display: block;
+      background: var(--blue-tint);
+    }
+
+    .find-us__body {
+      padding: var(--s-5) var(--s-5) var(--s-5);
+    }
+
+    .find-us__addr {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: var(--s-4);
+      align-items: start;
+    }
+
+    .find-us__addr+.find-us__addr {
+      margin-top: var(--s-4);
+      padding-top: var(--s-4);
+      border-top: 1px solid var(--line);
+    }
+
+    .find-us__icon {
+      width: 44px;
+      height: 44px;
+      background: var(--blue-tint);
+      color: var(--blue);
+      border-radius: var(--r-2);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .find-us__label {
+      font-family: var(--display);
+      font-weight: 700;
+      font-size: 0.7rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 4px;
+    }
+
+    .find-us__value {
+      font-family: var(--display);
+      font-weight: 700;
+      font-size: 1.0625rem;
+      color: var(--blue-deep);
+      line-height: 1.3;
+      text-transform: uppercase;
+      letter-spacing: 0.005em;
+    }
+
+    .find-us__value span {
+      display: block;
+      font-family: var(--body-face);
+      font-weight: 400;
+      font-size: 0.9375rem;
+      color: var(--body);
+      text-transform: none;
+      letter-spacing: 0;
+      margin-top: 2px;
+    }
+
+    /* ===== form ===== */
+    .form-card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--r-3);
+      padding: var(--s-5);
+    }
+
+    .form-card h2 {
+      margin-top: 0;
+    }
+
+    .form-card .lead {
+      font-size: 1rem;
+    }
+
+    .form-grid {
+      display: grid;
+      gap: var(--s-3);
+      grid-template-columns: 1fr;
+      margin-top: var(--s-4);
+    }
+
+    .form-row-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--s-3);
+    }
+
+    .field {
+      display: grid;
+      gap: 6px;
+    }
+
+    .field label {
+      font-family: var(--display);
+      font-weight: 700;
+      font-size: 0.7rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--blue-deep);
+    }
+
+    .field label span {
+      color: var(--blue);
+    }
+
+    .field input,
+    .field textarea {
+      font-family: var(--body-face);
+      font-size: 1rem;
+      color: var(--blue-deep);
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--r-1);
+      padding: 12px 14px;
+      width: 100%;
+      transition: border-color .12s, box-shadow .12s;
+    }
+
+    .field textarea {
+      min-height: 140px;
+      resize: vertical;
+      line-height: 1.5;
+    }
+
+    .field input:focus,
+    .field textarea:focus {
+      outline: 0;
+      border-color: var(--blue);
+      box-shadow: 0 0 0 3px rgba(40, 69, 151, 0.15);
+    }
+
+    .form-foot {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: var(--s-4);
+      flex-wrap: wrap;
+      gap: var(--s-2);
+    }
+
+    .form-foot small {
+      color: var(--muted);
+      font-size: 0.8125rem;
+    }
+
+    /* ===== role-routed contact cards ===== */
+    .who-grid {
+      display: grid;
+      gap: var(--s-3);
+      grid-template-columns: 1fr;
+      margin-top: var(--s-5);
+    }
+
+    @media (min-width: 640px) {
+      .who-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--s-4);
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .who-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    .who-card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--r-2);
+      padding: var(--s-5);
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      transition: transform .15s, border-color .15s, box-shadow .15s;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .who-card:hover {
+      transform: translateY(-2px);
+      border-color: var(--blue);
+      box-shadow: var(--shadow-1);
+      text-decoration: none;
+    }
+
+    .who-card__role {
+      font-family: var(--display);
+      font-weight: 700;
+      font-size: 0.7rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--blue);
+    }
+
+    .who-card__h {
+      font-family: var(--display);
+      font-weight: 700;
+      font-size: 1.25rem;
+      color: var(--blue-deep);
+      line-height: 1.1;
+      text-transform: uppercase;
+      letter-spacing: 0.005em;
+      margin: 2px 0 6px;
+    }
+
+    .who-card p {
+      font-size: 0.9375rem;
+      color: var(--body);
+      margin: 0 0 var(--s-3);
+      line-height: 1.5;
+    }
+
+    .who-card__email {
+      margin-top: auto;
+      font-family: var(--body-face);
+      font-weight: 600;
+      font-size: 0.9375rem;
+      color: var(--blue);
+      word-break: break-all;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .who-card__email::after {
+      content: "›";
+      font-size: 1.125rem;
+    }
+
+    /* ===== committee - person cards with avatar, role, phone, email ===== */
+    .committee-grid {
+      display: grid;
+      gap: var(--s-4);
+      grid-template-columns: 1fr;
+      margin-top: var(--s-5);
+    }
+
+    @media (min-width: 640px) {
+      .committee-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .committee-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    .person-card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--r-2);
+      padding: var(--s-5);
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: var(--s-4);
+      align-items: start;
+    }
+
+    .person-card__avatar {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: var(--blue-tint);
+      color: var(--blue);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--display);
+      font-weight: 800;
+      font-size: 1.375rem;
+      letter-spacing: 0.02em;
+      flex-shrink: 0;
+    }
+
+    .person-card h3 {
+      margin: 0;
+      font-size: 1.125rem;
+      color: var(--blue-deep);
+      line-height: 1.1;
+    }
+
+    .person-card__role {
+      font-family: var(--display);
+      font-weight: 700;
+      font-size: 0.7rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin: 4px 0 var(--s-3);
+    }
+
+    .person-card__lines {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      gap: 4px;
+    }
+
+    .person-card__lines a {
+      font-size: 0.875rem;
+      color: var(--blue-deep);
+      text-decoration: none;
+      word-break: break-all;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .person-card__lines a:hover {
+      color: var(--blue);
+    }
+
+    .person-card__lines svg {
+      color: var(--blue);
+      flex-shrink: 0;
+    }
+
+    /* ===== match-day note ===== */
+    .match-day {
+      background:
+        linear-gradient(rgba(29, 52, 115, 0.82), rgba(29, 52, 115, 0.94)),
+        url('assets/photos/match-day.jpg') 50% 25%/cover no-repeat;
+      color: var(--surface);
+      padding: var(--s-7) var(--s-5);
+      border-radius: var(--r-3);
+      position: relative;
+      overflow: hidden;
+      isolation: isolate;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--s-4);
+      align-items: center;
+    }
+
+    @media (min-width: 768px) {
+      .match-day {
+        grid-template-columns: 2fr 1fr;
+        gap: var(--s-7);
+        padding: var(--s-7);
+      }
+    }
+
+    .match-day>* {
+      position: relative;
+      z-index: 1;
+    }
+
+    .match-day .eyebrow {
+      color: var(--accent);
+    }
+
+    .match-day h2 {
+      color: var(--surface);
+    }
+
+    .match-day p {
+      color: rgba(255, 255, 255, 0.88);
+      margin: 0;
+    }
+
+    .match-day__times {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: var(--r-2);
+      padding: var(--s-4);
+    }
+
+    .match-day__times dt {
+      font-family: var(--display);
+      font-weight: 700;
+      font-size: 0.7rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-top: var(--s-3);
+    }
+
+    .match-day__times dt:first-child {
+      margin-top: 0;
+    }
+
+    .match-day__times dd {
+      margin: 4px 0 0;
+      color: var(--surface);
+      font-family: var(--display);
+      font-weight: 700;
+      font-size: 1.0625rem;
+      text-transform: uppercase;
+      letter-spacing: 0.005em;
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a href="home.html" class="site-header__brand"><img src="assets/logo.png" alt="" />
+        <div class="site-header__wordmark">Langwarrin Junior FC<span>Est. 1925</span></div>
+      </a>
+      <nav class="site-nav" aria-label="Primary">
+        <a href="home.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="news.html">News</a>
+        <a href="player-info.html">Player Info</a>
+        <a href="sponsors.html">Sponsors</a>
+        <a href="contact.html" class="is-active">Contact</a>
+      </nav>
+      <a href="register.html" class="site-header__cta">Register 2026</a>
+      <button class="hamburger" aria-label="Open menu" aria-expanded="false" data-hamburger>
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"
+          stroke-linecap="round">
+          <path d="M3 6h18M3 12h18M3 18h18" />
+        </svg>
+      </button>
+    </div>
+  </header>
+  <div class="mobile-drawer" data-drawer aria-label="Mobile menu">
+    <ul>
+      <li><a href="home.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="news.html">News &amp; Events</a></li>
+      <li><a href="player-info.html">Player Information</a></li>
+      <li><a href="register.html">Register</a></li>
+      <li><a href="sponsors.html">Sponsors</a></li>
+      <li><a href="about.html">Coaches &amp; Managers</a></li>
+      <li><a href="about.html">Auskick</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <a class="btn btn--primary" href="register.html">Register for 2026</a>
+  </div>
+
+  <!-- Banner ================================================================ -->
+  <section class="page-banner">
+    <div class="page-banner__media" style="background-image: url('assets/photos/banner-contact.jpg');"></div>
+    <div class="page-banner__overlay"></div>
+    <div class="page-banner__inner">
+      <div class="page-banner__crumbs"><a href="home.html">Home</a><span>·</span>Contact</div>
+      <h1 class="page-banner__title">Get in touch.</h1>
+      <p class="page-banner__sub">Lloyd Park is our home ground and the committee is one email away. Find the right
+        person below, or send us a general enquiry.</p>
+    </div>
+  </section>
+
+  <!-- Find us + Form ======================================================== -->
+  <section class="section">
+    <div class="wrap">
+      <div class="contact-split">
+
+        <!-- LEFT: address + map -->
+        <div>
+          <span class="eyebrow">Find us</span>
+          <h2 style="max-width: 22ch;">Lloyd Park, Langwarrin.</h2>
+          <p class="lead">Home of the Roos since 1925. Saturday mornings, Sunday matches, Tuesday and Thursday training.
+          </p>
+
+          <div class="find-us" style="margin-top: var(--s-5);">
+            <iframe class="find-us__map" title="Map of Lloyd Park, 4 Shute Drive, Langwarrin"
+              src="https://www.openstreetmap.org/export/embed.html?bbox=145.18727%2C-38.15320%2C145.19727%2C-38.14720&amp;layer=mapnik&amp;marker=-38.1502012%2C145.192273"
+              loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            <div class="find-us__body">
+              <div class="find-us__addr">
+                <span class="find-us__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z" />
+                    <circle cx="12" cy="10" r="3" />
+                  </svg></span>
+                <div>
+                  <div class="find-us__label">Ground</div>
+                  <div class="find-us__value">Lloyd Park<span>4 Shute Drive, Langwarrin VIC 3910</span></div>
+                </div>
+              </div>
+              <div class="find-us__addr">
+                <span class="find-us__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="5" width="18" height="14" rx="2" />
+                    <path d="M3 7l9 6 9-6" />
+                  </svg></span>
+                <div>
+                  <div class="find-us__label">Postal</div>
+                  <div class="find-us__value">PO Box 4121<span>Langwarrin VIC 3910</span></div>
+                </div>
+              </div>
+              <div class="find-us__addr">
+                <span class="find-us__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path
+                      d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+                  </svg></span>
+                <div>
+                  <div class="find-us__label">Phone</div>
+                  <div class="find-us__value"><a href="tel:+61410679422" style="color: inherit;">0410 679
+                      422</a><span>President · Brad McNeilage</span></div>
+                </div>
+              </div>
+              <div style="margin-top: var(--s-5); display: flex; gap: var(--s-2); flex-wrap: wrap;">
+                <a class="btn btn--outline btn--sm"
+                  href="https://www.google.com/maps/dir/?api=1&amp;destination=Lloyd+Park,+4+Shute+Drive,+Langwarrin+VIC+3910"
+                  target="_blank" rel="noopener">
+                  Get directions
+                  <svg class="btn__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M5 12h14M13 5l7 7-7 7" />
+                  </svg>
+                </a>
+                <a class="btn btn--outline btn--sm" href="https://www.facebook.com/langyjfc/" target="_blank"
+                  rel="noopener">
+                  Facebook
+                </a>
+                <a class="btn btn--outline btn--sm" href="https://www.instagram.com/langwarrinjfc/" target="_blank"
+                  rel="noopener">
+                  Instagram
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- RIGHT: enquiry form -->
+        <div>
+          <div class="form-card">
+            <span class="eyebrow">Get in touch</span>
+            <h2 style="margin-bottom: var(--s-3);">Send us a message.</h2>
+            <p class="lead">Quickest way to reach the committee. Replies usually within 24–48 hours.</p>
+
+            <form class="form-grid" action="#" method="post" novalidate>
+              <div class="form-row-2">
+                <div class="field">
+                  <label for="first">First name <span>*</span></label>
+                  <input id="first" name="first" type="text" autocomplete="given-name" required />
+                </div>
+                <div class="field">
+                  <label for="last">Last name <span>*</span></label>
+                  <input id="last" name="last" type="text" autocomplete="family-name" required />
+                </div>
+              </div>
+              <div class="field">
+                <label for="phone">Phone <span>*</span></label>
+                <input id="phone" name="phone" type="tel" inputmode="numeric" autocomplete="tel" required />
+              </div>
+              <div class="field">
+                <label for="email">Email <span>*</span></label>
+                <input id="email" name="email" type="email" autocomplete="email" required />
+              </div>
+              <div class="field">
+                <label for="message">What would you like to know? <span>*</span></label>
+                <textarea id="message" name="message" rows="6" required></textarea>
+              </div>
+              <div class="form-foot">
+                <small>* required</small>
+                <button type="submit" class="btn btn--primary">
+                  Send message
+                  <svg class="btn__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M5 12h14M13 5l7 7-7 7" />
+                  </svg>
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Who to email ========================================================== -->
+  <section class="section" style="background: var(--surface-2);">
+    <div class="wrap">
+      <span class="eyebrow">Direct lines</span>
+      <h2 style="max-width: 22ch;">Who should I email?</h2>
+      <p class="lead">Pick the closest fit and you'll skip a forwarding step. For anything we haven't listed, send it to
+        the secretary.</p>
+
+      <div class="who-grid">
+        <a class="who-card" href="mailto:registrar@langyjfc.com">
+          <span class="who-card__role">Registrations</span>
+          <span class="who-card__h">Registrar</span>
+          <p>New player registrations, birth certificates, age-group queries, wait list, transfers in and out.</p>
+          <span class="who-card__email">registrar@langyjfc.com</span>
+        </a>
+        <a class="who-card" href="mailto:treasurer@langyjfc.com">
+          <span class="who-card__role">Fees &amp; payments</span>
+          <span class="who-card__h">Treasurer</span>
+          <p>Fee payments, payment plans, refunds, Active Kids voucher questions, sponsor invoicing.</p>
+          <span class="who-card__email">treasurer@langyjfc.com</span>
+        </a>
+        <a class="who-card" href="mailto:firstaid@langyjfc.com">
+          <span class="who-card__role">Trainers &amp; injuries</span>
+          <span class="who-card__h">First Aid</span>
+          <p>Trainer applications, first-aid certificates, on-field injury reporting, concussion follow-up.</p>
+          <span class="who-card__email">firstaid@langyjfc.com</span>
+        </a>
+        <a class="who-card" href="mailto:sponsorship@langyjfc.com">
+          <span class="who-card__role">Sponsorship</span>
+          <span class="who-card__h">Sponsorship</span>
+          <p>Become a sponsor, sponsor renewals, ground signage, jersey placement, package details.</p>
+          <span class="who-card__email">sponsorship@langyjfc.com</span>
+        </a>
+        <a class="who-card" href="mailto:president@langyjfc.com">
+          <span class="who-card__role">Child safety &amp; serious matters</span>
+          <span class="who-card__h">President</span>
+          <p>Child-safeguarding concerns, conduct complaints, league-delegate matters. Confidential.</p>
+          <span class="who-card__email">president@langyjfc.com</span>
+        </a>
+        <a class="who-card" href="mailto:secretary@langyjfc.com">
+          <span class="who-card__role">Everything else</span>
+          <span class="who-card__h">Secretary</span>
+          <p>General enquiries, website issues, AGM, meeting minutes, anything that doesn't fit elsewhere.</p>
+          <span class="who-card__email">secretary@langyjfc.com</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Committee ============================================================= -->
+  <section class="section">
+    <div class="wrap">
+      <span class="eyebrow">Executive Committee 2026</span>
+      <h2 style="max-width: 22ch;">The people behind the Roos.</h2>
+      <p class="lead">Six volunteers who keep the club running. New committee members are always welcome - talk to the
+        secretary, or apply via the <a
+          href="https://www.cognitoforms.com/LangwarrinJuniorFootballClub/_2026CommitteeNomination" target="_blank"
+          rel="noopener">2026 nomination form</a>.</p>
+
+      <div class="committee-grid">
+        <article class="person-card">
+          <span class="person-card__avatar">BM</span>
+          <div>
+            <h3>Brad McNeilage</h3>
+            <div class="person-card__role">President &amp; League Delegate</div>
+            <ul class="person-card__lines">
+              <li><a href="tel:+61410679422"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                    <path
+                      d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+                  </svg>0410 679 422</a></li>
+              <li><a href="mailto:president@langyjfc.com"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="5" width="18" height="14" rx="2" />
+                    <path d="M3 7l9 6 9-6" />
+                  </svg>president@langyjfc.com</a></li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="person-card">
+          <span class="person-card__avatar">WP</span>
+          <div>
+            <h3>Wes Porter</h3>
+            <div class="person-card__role">Vice President</div>
+            <ul class="person-card__lines">
+              <li><a href="tel:+61430298102"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                    <path
+                      d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+                  </svg>0430 298 102</a></li>
+              <li><a href="mailto:vicepresident@langyjfc.com"><svg width="14" height="14" viewBox="0 0 24 24"
+                    fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="5" width="18" height="14" rx="2" />
+                    <path d="M3 7l9 6 9-6" />
+                  </svg>vicepresident@langyjfc.com</a></li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="person-card">
+          <span class="person-card__avatar">PM</span>
+          <div>
+            <h3>Paul Muddiman</h3>
+            <div class="person-card__role">VP Football Operations</div>
+            <ul class="person-card__lines">
+              <li><a href="tel:+61487011188"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                    <path
+                      d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+                  </svg>0487 011 188</a></li>
+              <li><a href="mailto:vicepresadmin@langyjfc.com"><svg width="14" height="14" viewBox="0 0 24 24"
+                    fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="5" width="18" height="14" rx="2" />
+                    <path d="M3 7l9 6 9-6" />
+                  </svg>vicepresadmin@langyjfc.com</a></li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="person-card">
+          <span class="person-card__avatar">KS</span>
+          <div>
+            <h3>Kate Smith</h3>
+            <div class="person-card__role">Secretary</div>
+            <ul class="person-card__lines">
+              <li><a href="tel:+61421441121"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                    <path
+                      d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+                  </svg>0421 441 121</a></li>
+              <li><a href="mailto:secretary@langyjfc.com"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="5" width="18" height="14" rx="2" />
+                    <path d="M3 7l9 6 9-6" />
+                  </svg>secretary@langyjfc.com</a></li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="person-card">
+          <span class="person-card__avatar">LS</span>
+          <div>
+            <h3>Lauren Scott</h3>
+            <div class="person-card__role">Treasurer</div>
+            <ul class="person-card__lines">
+              <li><a href="tel:+61421848139"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                    <path
+                      d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+                  </svg>0421 848 139</a></li>
+              <li><a href="mailto:treasurer@langyjfc.com"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="5" width="18" height="14" rx="2" />
+                    <path d="M3 7l9 6 9-6" />
+                  </svg>treasurer@langyjfc.com</a></li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="person-card">
+          <span class="person-card__avatar">KM</span>
+          <div>
+            <h3>Kim McVarnock</h3>
+            <div class="person-card__role">Registrar</div>
+            <ul class="person-card__lines">
+              <li><a href="tel:+61413641561"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                    <path
+                      d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+                  </svg>0413 641 561</a></li>
+              <li><a href="mailto:registrar@langyjfc.com"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="5" width="18" height="14" rx="2" />
+                    <path d="M3 7l9 6 9-6" />
+                  </svg>registrar@langyjfc.com</a></li>
+            </ul>
+          </div>
+        </article>
+      </div>
+
+      <p style="margin-top: var(--s-6); font-size: 0.875rem; color: var(--muted);">
+        <em>Phone numbers are for direct committee contact during the season. For non-urgent enquiries please email - we
+          read everything within 48 hours.</em>
+      </p>
+    </div>
+  </section>
+
+  <!-- Match-day note ======================================================== -->
+  <section class="section">
+    <div class="wrap">
+      <div class="match-day">
+        <div>
+          <span class="eyebrow">When we're at the ground</span>
+          <h2 style="margin-bottom: var(--s-3);">Drop in on a match day.</h2>
+          <p>The clubrooms and canteen at Lloyd Park are open every Saturday and Sunday during the season. Coffee,
+            snags, hot chips, the merch shed, and a few hundred friendly Roos.</p>
+        </div>
+        <dl class="match-day__times">
+          <dt>Auskick</dt>
+          <dd>Sat · 9:00 am</dd>
+          <dt>Junior matches</dt>
+          <dd>Sun · 8:30 am – 4:00 pm</dd>
+          <dt>Training</dt>
+          <dd>Tue + Thu · 5:00 pm</dd>
+          <dt>Canteen / merch</dt>
+          <dd>Match days · all season</dd>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer ================================================================ -->
+  <footer class="site-footer">
+    <div class="stripe-rule"></div>
+    <div class="wrap site-footer__grid">
+      <div>
+        <div class="site-footer__brand">
+          <img src="assets/logo.png" alt="" />
+          <div><strong>Langwarrin<br />Junior FC</strong><small>Est. 1925 · Lloyd Park</small></div>
+        </div>
+        <div class="site-footer__safe">
+          <strong>Child safety</strong>
+          LJFC has zero tolerance for child abuse. We are committed to a child-safe and child-friendly environment for
+          all junior players.
+        </div>
+      </div>
+      <div>
+        <h4>Club</h4>
+        <ul>
+          <li><a href="about.html">About</a></li>
+          <li><a href="about.html">Committee</a></li>
+          <li><a href="about.html">Coaches &amp; Managers</a></li>
+          <li><a href="about.html">Good Sports Club</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Players</h4>
+        <ul>
+          <li><a href="register.html">Register</a></li>
+          <li><a href="player-info.html">Player Information</a></li>
+          <li><a href="player-info.html#codes">Code of Conduct</a></li>
+          <li><a href="player-info.html#player-care">Player Care</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Connect</h4>
+        <ul>
+          <li><a href="mailto:secretary@langyjfc.com">secretary@langyjfc.com</a></li>
+          <li><a href="tel:+61410679422">+61 410 679 422</a></li>
+          <li><a href="contact.html">Lloyd Park, Langwarrin VIC</a></li>
+        </ul>
+        <div class="site-footer__social" style="margin-top: var(--s-3);">
+          <a href="https://www.facebook.com/langyjfc/" aria-label="Facebook"><svg width="18" height="18"
+              viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M22 12.06C22 6.5 17.52 2 12 2S2 6.5 2 12.06c0 5 3.66 9.15 8.44 9.94v-7.03H7.9v-2.91h2.54V9.85c0-2.51 1.49-3.89 3.77-3.89 1.09 0 2.24.2 2.24.2v2.46H15.2c-1.24 0-1.63.77-1.63 1.56v1.88h2.78l-.44 2.91h-2.34V22c4.78-.79 8.43-4.94 8.43-9.94z" />
+            </svg></a>
+          <a href="https://www.instagram.com/langwarrinjfc/" aria-label="Instagram"><svg width="18" height="18"
+              viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="2" y="2" width="20" height="20" rx="5" />
+              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+              <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+            </svg></a>
+        </div>
+      </div>
+    </div>
+    <div class="wrap site-footer__bottom">
+      <span>© 2026 Langwarrin Community Football Club Inc. · ABN 74 848 607 387</span>
+      <span>Frankston &amp; District Junior Football League</span>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+
+</html>

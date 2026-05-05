@@ -1,0 +1,441 @@
+<!--
+  ux3 - monochrome restyle of /ux/home.html
+  Same content + section order. Single-blue palette + Inter body.
+  Sections, top to bottom:
+    1. Sticky header (white)
+    2. Full-bleed hero - single brand-blue overlay, light-blue accent split
+    3. Acknowledgement of Country band
+    4. Three-action band
+    5. Pathways (Auskick / Junior / Youth)
+    6. Latest news (3 cards, first featured)
+    7. 2025 Premiers Wall - 9 teams in a 3x3 grid
+    8. Tiered sponsor showcase
+    9. Footer
+-->
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Langwarrin Junior Football Club - Welcome to the Roos</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet"
+  href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" />
+<link rel="stylesheet" href="styles.css" />
+<style>
+  /* page-load reveal: stagger the hero elements */
+  .hero__eyebrow, .hero__title, .hero__sub, .hero__ctas, .hero__strip {
+    opacity: 0; transform: translateY(8px);
+    animation: rise .55s cubic-bezier(.2,.7,.2,1) forwards;
+  }
+  .hero__title    { animation-delay: .08s; }
+  .hero__sub      { animation-delay: .18s; }
+  .hero__ctas     { animation-delay: .26s; }
+  .hero__strip    { animation-delay: .34s; }
+  @keyframes rise { to { opacity: 1; transform: translateY(0); } }
+  @media (prefers-reduced-motion: reduce) {
+    .hero__eyebrow, .hero__title, .hero__sub, .hero__ctas, .hero__strip {
+      opacity: 1; transform: none; animation: none;
+    }
+  }
+
+  .home-news-head {
+    display: flex; flex-wrap: wrap; align-items: baseline;
+    justify-content: space-between; gap: var(--s-3);
+    margin-bottom: var(--s-2);
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="site-header__inner">
+    <a href="home.html" class="site-header__brand" aria-label="LJFC home">
+      <img src="assets/logo.png" alt="" />
+      <div class="site-header__wordmark">
+        Langwarrin Junior FC
+        <span>Est. 1925</span>
+      </div>
+    </a>
+    <nav class="site-nav" aria-label="Primary">
+      <a href="home.html" class="is-active">Home</a>
+      <a href="about.html">About</a>
+      <a href="news.html">News</a>
+      <a href="player-info.html">Player Info</a>
+      <a href="sponsors.html">Sponsors</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <a href="register.html" class="site-header__cta">Register 2026</a>
+    <button class="hamburger" aria-label="Open menu" aria-expanded="false" data-hamburger>
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+    </button>
+  </div>
+</header>
+<div class="mobile-drawer" data-drawer aria-label="Mobile menu">
+  <ul>
+    <li><a href="home.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="news.html">News &amp; Events</a></li>
+    <li><a href="player-info.html">Player Information</a></li>
+    <li><a href="register.html">Register</a></li>
+    <li><a href="sponsors.html">Sponsors</a></li>
+    <li><a href="about.html">Coaches &amp; Managers</a></li>
+    <li><a href="about.html">Auskick</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <a class="btn btn--primary" href="register.html">Register for 2026</a>
+</div>
+
+<!-- 1 + 2. Hero ============================================================ -->
+<section class="hero" aria-label="Welcome">
+  <div class="hero__media" style="background-image: url('assets/photos/hero-action.jpg');"></div>
+  <div class="hero__overlay"></div>
+  <div class="hero__inner">
+    <span class="hero__eyebrow">Established 1925 · 2026 season starts April</span>
+    <h1 class="hero__title">One Hundred<br />Years of<em>Langy Pride.</em></h1>
+    <p class="hero__sub">A safe and fun environment for all aspiring junior Aussie Rules footballers, Auskick at age 5 through to Youth at U18, with a full girls' pathway from U8 to U18.</p>
+    <div class="hero__ctas">
+      <a class="btn btn--primary btn--lg" href="register.html">Register for 2026
+        <svg class="btn__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+      </a>
+      <a class="btn btn--ghost btn--lg" href="about.html">Find your team</a>
+    </div>
+    <div class="hero__strip">
+      <div class="hero__stat"><span class="num">9</span><span class="lbl">Premiers · 2025</span></div>
+      <div class="hero__stat"><span class="num">780+</span><span class="lbl">Players · 2025</span></div>
+      <div class="hero__stat"><span class="num">10</span><span class="lbl">Girls' sides</span></div>
+      <div class="hero__stat"><span class="num">100</span><span class="lbl">Years · Centenary</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- 3. Acknowledgement of Country ========================================= -->
+<section class="aoc" aria-label="Acknowledgement of Country">
+  <div class="aoc__inner">
+    <div class="aoc__flags" aria-hidden="true">
+      <span class="aoc__flag aoc__flag--abo" title="Aboriginal flag"></span>
+      <span class="aoc__flag aoc__flag--tsi" title="Torres Strait Islander flag"></span>
+    </div>
+    <p class="aoc__text">
+      <strong>Acknowledgement of Country</strong>
+      Langwarrin Junior Football Club recognises and respects the Bunurong people of the Kulin Nation as the traditional owners of Country on which we live and play at Lloyd Park. We pay respect to Elders past and present and extend that respect to all Aboriginal and Torres Strait Islander players and families in our community.
+    </p>
+  </div>
+</section>
+
+<!-- 4. Three-action band ================================================== -->
+<section class="actions" aria-label="Quick actions">
+  <div class="actions__grid">
+    <a href="register.html" class="action-card">
+      <span class="action-card__icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 11l-3 3-2-2"/></svg></span>
+      <span>
+        <span class="action-card__title">Register</span>
+        <span class="action-card__sub">2026 season, Auskick &amp; Junior pathways</span>
+      </span>
+      <span class="action-card__arrow"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
+    </a>
+    <a href="https://www.playhq.com/afl/org/langwarrin-community-football-club/96f37aee" class="action-card">
+      <span class="action-card__icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></span>
+      <span>
+        <span class="action-card__title">Fixtures &amp; Ladders</span>
+        <span class="action-card__sub">Live results on PlayHQ</span>
+      </span>
+      <span class="action-card__arrow"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
+    </a>
+    <a href="news.html" class="action-card">
+      <span class="action-card__icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></span>
+      <span>
+        <span class="action-card__title">Kanga Noos</span>
+        <span class="action-card__sub">March 2026 newsletter, out now</span>
+      </span>
+      <span class="action-card__arrow"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
+    </a>
+  </div>
+</section>
+
+<!-- 5. Pathways ============================================================= -->
+<section class="section" id="pathways" aria-label="Pathways">
+  <div class="wrap">
+    <span class="eyebrow">Pathways</span>
+    <h2 style="max-width: 18ch;">Where does my kid fit?</h2>
+    <p class="lead">Three doors into the club. Pick the one that matches your family, or talk to us if you're not sure.</p>
+
+    <div class="pathways">
+      <a class="pathway" href="about.html">
+        <div class="pathway__media" style="background-image: url('assets/photos/auskick.jpg');"></div>
+        <div class="pathway__overlay"></div>
+        <div class="pathway__body">
+          <span class="pathway__age">Ages 5 – 7</span>
+          <div>
+            <h3 class="pathway__title">Auskick</h3>
+            <p class="pathway__copy">Saturday-morning fundamentals at Lloyd Park. The friendliest place to learn the game.</p>
+            <span class="pathway__cta">Get started <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
+          </div>
+        </div>
+      </a>
+      <a class="pathway" href="about.html">
+        <div class="pathway__media" style="background-image: url('assets/photos/junior.jpg');"></div>
+        <div class="pathway__overlay"></div>
+        <div class="pathway__body">
+          <span class="pathway__age">Ages 8 – 12</span>
+          <div>
+            <h3 class="pathway__title">Junior</h3>
+            <p class="pathway__copy">U8 to U12 in the FDJFL. Sundays at Lloyd Park and grounds across the south-east.</p>
+            <span class="pathway__cta">See teams <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
+          </div>
+        </div>
+      </a>
+      <a class="pathway" href="about.html">
+        <div class="pathway__media" style="background-image: url('assets/photos/youth.jpg');"></div>
+        <div class="pathway__overlay"></div>
+        <div class="pathway__body">
+          <span class="pathway__age">Ages 13 – 18</span>
+          <div>
+            <h3 class="pathway__title">Youth</h3>
+            <p class="pathway__copy">U13 through U18, including a full girls' pathway from U8 to U18.</p>
+            <span class="pathway__cta">Find your grade <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- 6. Latest news ========================================================= -->
+<section class="section" id="news" style="background: var(--surface-2);" aria-label="Latest news">
+  <div class="wrap">
+    <div class="home-news-head">
+      <div>
+        <span class="eyebrow">Latest News</span>
+        <h2 style="margin: 0;">Kanga Noos</h2>
+      </div>
+      <a class="btn btn--outline btn--sm" href="news.html">All news
+        <svg class="btn__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+
+    <div class="news-grid">
+      <a class="news-card news-card--featured" href="#">
+        <div class="news-card__media" style="background-image: url('assets/teams/u14-girls-kangas.jpg');">
+          <span class="pill pill--solid news-card__pill">U14 Girls</span>
+        </div>
+        <div class="news-card__body">
+          <div class="news-card__meta">12 April 2026 · Match Report</div>
+          <h3 class="news-card__title">Girls Kangas open the 2026 campaign with a 38-point win</h3>
+          <p class="news-card__excerpt">A dominant first quarter set the tone, the U14 Girls Kangas put six goals on the board before the long break, defending the 2025 premiership in style.</p>
+        </div>
+      </a>
+      <a class="news-card" href="#">
+        <div class="news-card__media" style="background-image: url('assets/teams/u17-blue.jpg');">
+          <span class="pill news-card__pill">Club</span>
+        </div>
+        <div class="news-card__body">
+          <div class="news-card__meta">8 April 2026</div>
+          <h3 class="news-card__title">Round 1 wrap: every Roo team takes the field</h3>
+          <p class="news-card__excerpt">From Auskick at 8am to U17 Blue under lights, Round 1 was a club-wide statement of intent.</p>
+        </div>
+      </a>
+      <a class="news-card" href="#">
+        <div class="news-card__media" style="background-image: url('assets/photos/auskick.jpg');">
+          <span class="pill pill--solid news-card__pill">Auskick</span>
+        </div>
+        <div class="news-card__body">
+          <div class="news-card__meta">2 April 2026</div>
+          <h3 class="news-card__title">Auskick numbers up 14%, 2026 capacity reached</h3>
+          <p class="news-card__excerpt">Saturday morning is back at Lloyd Park. Wait list now open via the registration page.</p>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- 7. 2025 Premiers Wall ================================================== -->
+<section class="premiers section--lg" aria-label="2025 Premiers">
+  <div class="wrap">
+    <div class="premiers__head">
+      <span class="eyebrow">Most successful season on field</span>
+      <h2 style="margin-bottom: var(--s-3);">2025 Premiers</h2>
+      <p class="lead">Eleven teams reached AFLSE grand finals. <strong style="color: var(--accent);">Nine</strong> brought home the cup. The proudest year in 100 years of the club.</p>
+    </div>
+
+    <div class="premiers__grid">
+      <div class="premier">
+        <div class="premier__media" style="background-image: url('assets/teams/u17-blue.jpg');"></div>
+        <div class="premier__shade"></div>
+        <span class="premier__banner">Premiers '25</span>
+        <div class="premier__caption"><span>FDJFL Grand Final</span>U17 Blue</div>
+      </div>
+      <div class="premier">
+        <div class="premier__media" style="background-image: url('assets/teams/u15-white.jpg');"></div>
+        <div class="premier__shade"></div>
+        <span class="premier__banner">Premiers '25</span>
+        <div class="premier__caption"><span>FDJFL Grand Final</span>U15 White</div>
+      </div>
+      <div class="premier">
+        <div class="premier__media" style="background-image: url('assets/teams/u15-blue.jpg');"></div>
+        <div class="premier__shade"></div>
+        <span class="premier__banner">Premiers '25</span>
+        <div class="premier__caption"><span>FDJFL Grand Final</span>U15 Blue</div>
+      </div>
+      <div class="premier">
+        <div class="premier__media" style="background-image: url('assets/teams/u14-girls-kangas.jpg');"></div>
+        <div class="premier__shade"></div>
+        <span class="premier__banner">Premiers '25</span>
+        <div class="premier__caption"><span>FDJFL Grand Final</span>U14 Girls Kangas</div>
+      </div>
+      <div class="premier">
+        <div class="premier__media" style="background-image: url('assets/teams/u14-girls-blue.jpg');"></div>
+        <div class="premier__shade"></div>
+        <span class="premier__banner">Premiers '25</span>
+        <div class="premier__caption"><span>FDJFL Grand Final</span>U14 Girls Blue</div>
+      </div>
+      <div class="premier">
+        <div class="premier__media" style="background-image: url('assets/teams/u13-kangas.jpg');"></div>
+        <div class="premier__shade"></div>
+        <span class="premier__banner">Premiers '25</span>
+        <div class="premier__caption"><span>FDJFL Grand Final</span>U13 Kangas</div>
+      </div>
+      <div class="premier">
+        <div class="premier__media" style="background-image: url('assets/teams/u12-blue.jpg');"></div>
+        <div class="premier__shade"></div>
+        <span class="premier__banner">Premiers '25</span>
+        <div class="premier__caption"><span>FDJFL Grand Final</span>U12 Blue</div>
+      </div>
+      <div class="premier">
+        <div class="premier__media" style="background-image: url('assets/teams/u12-girls-blue.jpg');"></div>
+        <div class="premier__shade"></div>
+        <span class="premier__banner">Premiers '25</span>
+        <div class="premier__caption"><span>FDJFL Grand Final</span>U12 Girls Blue</div>
+      </div>
+      <div class="premier">
+        <div class="premier__media" style="background-image: url('assets/teams/u16-girls.jpg');"></div>
+        <div class="premier__shade"></div>
+        <span class="premier__banner">Premiers '25</span>
+        <div class="premier__caption"><span>FDJFL Grand Final</span>U16 Girls</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 8. Sponsor showcase =================================================== -->
+<section class="section" id="sponsors" aria-label="Sponsors">
+  <div class="wrap">
+    <div class="home-news-head">
+      <div>
+        <span class="eyebrow">Thank you to our sponsors</span>
+        <h2 style="margin: 0;">30+ local businesses back the Roos</h2>
+      </div>
+      <a class="btn btn--outline btn--sm" href="sponsors.html">All sponsors
+        <svg class="btn__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+
+    <div class="sponsor-tier">
+      <div class="sponsor-tier__head">
+        <div class="sponsor-tier__label">Major Partners</div>
+        <div class="sponsor-tier__sub">Naming rights · Premier</div>
+      </div>
+      <div class="sponsor-grid sponsor-grid--lg">
+        <a class="sponsor-tile sponsor-tile--lg" href="#"><img src="assets/sponsors/pindara.jpg" alt="Pindara Insurance" /></a>
+        <a class="sponsor-tile sponsor-tile--lg" href="#"><img src="assets/sponsors/mcgrath.png" alt="McGrath Estate Agents" /></a>
+      </div>
+    </div>
+
+    <div class="sponsor-tier">
+      <div class="sponsor-tier__head">
+        <div class="sponsor-tier__label">Premier Sponsors</div>
+      </div>
+      <div class="sponsor-grid sponsor-grid--md">
+        <a class="sponsor-tile sponsor-tile--md" href="#"><img src="assets/sponsors/cranbourne-toyota.png" alt="Cranbourne Toyota" /></a>
+        <a class="sponsor-tile sponsor-tile--md" href="#"><img src="assets/sponsors/tyrepower.jpg" alt="Frankston Tyrepower" /></a>
+        <a class="sponsor-tile sponsor-tile--md" href="#"><img src="assets/sponsors/acacia-park.png" alt="Acacia Park" /></a>
+        <a class="sponsor-tile sponsor-tile--md" href="#"><img src="assets/sponsors/gecko-roofing.png" alt="Gecko Roofing" /></a>
+      </div>
+    </div>
+
+    <div class="sponsor-tier">
+      <div class="sponsor-tier__head">
+        <div class="sponsor-tier__label">Supporters</div>
+      </div>
+      <div class="sponsor-grid sponsor-grid--sm">
+        <a class="sponsor-tile sponsor-tile--sm" href="#"><img src="assets/sponsors/coffee-in-a-dee.png" alt="Coffee in a Dee Cup" /></a>
+        <a class="sponsor-tile sponsor-tile--sm" href="#"><img src="assets/sponsors/whip-it-up.png" alt="Whip It Up Icecream" /></a>
+        <a class="sponsor-tile sponsor-tile--sm" href="#"><img src="assets/sponsors/jonny-boys.png" alt="Jonny Boys Pizza" /></a>
+        <a class="sponsor-tile sponsor-tile--sm" href="#"><img src="assets/sponsors/grilld.jpg" alt="Grill'd" /></a>
+        <a class="sponsor-tile sponsor-tile--sm" href="#"><img src="assets/sponsors/holey-moley.png" alt="Holey Moley" /></a>
+        <a class="sponsor-tile sponsor-tile--sm" href="#"><img src="assets/sponsors/strike.png" alt="Strike Bowling" /></a>
+        <a class="sponsor-tile sponsor-tile--sm" href="#"><img src="assets/sponsors/bjm-landscaping.png" alt="BJM Landscaping" /></a>
+        <a class="sponsor-tile sponsor-tile--sm" href="#"><img src="assets/sponsors/sunarch.png" alt="Sunarch" /></a>
+        <a class="sponsor-tile sponsor-tile--sm" href="#"><img src="assets/sponsors/dcpc.png" alt="DCPC IT Solutions" /></a>
+        <a class="sponsor-tile sponsor-tile--sm" href="#"><img src="assets/sponsors/mbs-plumbing.jpg" alt="MBS Plumbing" /></a>
+        <a class="sponsor-tile sponsor-tile--sm" href="#"><img src="assets/sponsors/peninsula-private.png" alt="Peninsula Private Hospital" /></a>
+        <a class="sponsor-tile sponsor-tile--sm" href="#"><img src="assets/sponsors/parc.png" alt="Parc" /></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 9. Footer ============================================================== -->
+<footer class="site-footer">
+  <div class="stripe-rule"></div>
+  <div class="wrap site-footer__grid">
+    <div>
+      <div class="site-footer__brand">
+        <img src="assets/logo.png" alt="" />
+        <div>
+          <strong>Langwarrin<br />Junior FC</strong>
+          <small>Est. 1925 · Lloyd Park</small>
+        </div>
+      </div>
+      <p style="font-size: 0.9375rem; color: rgba(255,255,255,0.78); margin: 0 0 var(--s-3); max-width: 38ch;">
+        Providing a safe and fun environment for all aspiring junior Aussie Rules footballers since 1925.
+      </p>
+      <div class="site-footer__safe">
+        <strong>Child safety</strong>
+        LJFC has zero tolerance for child abuse. We are committed to a child-safe and child-friendly environment for all junior players.
+      </div>
+    </div>
+    <div>
+      <h4>Club</h4>
+      <ul>
+        <li><a href="about.html">About</a></li>
+        <li><a href="about.html">Committee</a></li>
+        <li><a href="about.html">Coaches &amp; Managers</a></li>
+        <li><a href="about.html">Good Sports Club</a></li>
+        <li><a href="about.html">Annual Report 2025</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Players</h4>
+      <ul>
+        <li><a href="register.html">Register</a></li>
+        <li><a href="player-info.html">Player Information</a></li>
+        <li><a href="about.html">Code of Conduct</a></li>
+        <li><a href="about.html">Player Care</a></li>
+        <li><a href="about.html">Child Safeguarding</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Connect</h4>
+      <ul>
+        <li><a href="mailto:secretary@langyjfc.com">secretary@langyjfc.com</a></li>
+        <li><a href="tel:+61410679422">+61 410 679 422</a></li>
+        <li><a href="contact.html">Lloyd Park, Langwarrin VIC</a></li>
+        <li><a href="https://fdjfl.com.au/">FDJFL website</a></li>
+      </ul>
+      <div class="site-footer__social" style="margin-top: var(--s-3);">
+        <a href="#" aria-label="Facebook"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M22 12.06C22 6.5 17.52 2 12 2S2 6.5 2 12.06c0 5 3.66 9.15 8.44 9.94v-7.03H7.9v-2.91h2.54V9.85c0-2.51 1.49-3.89 3.77-3.89 1.09 0 2.24.2 2.24.2v2.46H15.2c-1.24 0-1.63.77-1.63 1.56v1.88h2.78l-.44 2.91h-2.34V22c4.78-.79 8.43-4.94 8.43-9.94z"/></svg></a>
+        <a href="#" aria-label="Instagram"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+      </div>
+    </div>
+  </div>
+  <div class="wrap site-footer__bottom">
+    <span>© 2026 Langwarrin Community Football Club Inc. · ABN 74 848 607 387</span>
+    <span>Frankston &amp; District Junior Football League</span>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
