@@ -626,6 +626,7 @@ p { margin: 0 0 var(--s-4); }
 }
 .action-card:hover .action-card__icon { background: var(--accent); color: var(--blue-deep); }
 .action-card__title {
+  display: block;
   font-family: var(--display);
   font-weight: 700;
   font-size: 1.5rem;
@@ -636,6 +637,7 @@ p { margin: 0 0 var(--s-4); }
   color: var(--surface);
 }
 .action-card__sub {
+  display: block;
   font-size: 0.875rem;
   color: rgba(255,255,255,0.78);
   margin: 0;
