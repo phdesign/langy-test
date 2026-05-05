@@ -144,17 +144,11 @@ p { margin: 0 0 var(--s-4); }
   .wrap { padding: 0 var(--s-6); }
 }
 
-/* slash-bar motif (replaces ux/stripe-rule) — recurring brand element from ux2 */
+/* solid accent rule (was diagonal slash-bar from ux2 — switched to flat colour) */
 .stripe-rule,
 .slash-bar {
   height: 6px;
-  background: repeating-linear-gradient(
-    -55deg,
-    var(--blue) 0 14px,
-    transparent 14px 22px,
-    var(--grey-cool) 22px 28px,
-    transparent 28px 36px
-  );
+  background: var(--accent);
 }
 
 /* angled-light pattern, used behind hero / premiers / actions */
@@ -1038,7 +1032,7 @@ p { margin: 0 0 var(--s-4); }
   display: flex; align-items: flex-start; gap: var(--s-3);
   margin-bottom: var(--s-4);
 }
-.site-footer__brand img { height: 56px; filter: brightness(0) invert(1); }
+.site-footer__brand img { height: 56px; }
 .site-footer__brand strong {
   font-family: var(--display); font-weight: 800; color: var(--surface);
   font-size: 1.125rem; letter-spacing: 0.02em; text-transform: uppercase; line-height: 1.1;
