@@ -394,7 +394,7 @@ p { margin: 0 0 var(--s-4); }
 }
 .mobile-drawer.is-open { display: block; }
 .mobile-drawer ul { list-style: none; padding: 0; margin: 0; }
-.mobile-drawer a {
+.mobile-drawer ul a {
   display: block;
   padding: 14px 8px;
   color: var(--blue-deep);
@@ -406,7 +406,7 @@ p { margin: 0 0 var(--s-4); }
   border-bottom: 1px solid var(--line);
   text-decoration: none;
 }
-.mobile-drawer a:hover { color: var(--blue); }
+.mobile-drawer ul a:hover { color: var(--blue); }
 .mobile-drawer .btn { width: 100%; margin-top: var(--s-4); }
 
 /* ==========================================================================
