@@ -1371,6 +1371,46 @@ p { margin: 0 0 var(--s-4); }
   transform: rotate(-45deg);
 }
 
+/* ==========================================================================
+   club song lyrics
+   ========================================================================== */
+.club-song {
+  margin: var(--s-5) 0 var(--s-6);
+  padding: var(--s-6) var(--s-5);
+  background: var(--blue-tint);
+  border-left: 4px solid var(--blue);
+  border-radius: var(--r-2);
+}
+.club-song__lyrics {
+  margin: 0;
+  font-family: var(--display);
+  font-size: 1.1875rem;
+  line-height: 1.35;
+  color: var(--blue-deep);
+  text-transform: none;
+  letter-spacing: 0.005em;
+  font-weight: 500;
+}
+.club-song__lyrics p { margin: 0 0 var(--s-5); }
+.club-song__lyrics p:last-child { margin: 0; }
+.club-song__lyrics em {
+  font-style: italic;
+  color: var(--blue);
+  font-weight: 600;
+}
+.club-song__lyrics strong {
+  display: inline-block;
+  margin-top: 4px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  font-size: 1.15em;
+  color: var(--blue);
+}
+@media (min-width: 768px) {
+  .club-song { padding: var(--s-7) var(--s-6); }
+  .club-song__lyrics { font-size: 1.3125rem; }
+}
+
 /* misc */
 .center { text-align: center; }
 .mt-0 { margin-top: 0; }
